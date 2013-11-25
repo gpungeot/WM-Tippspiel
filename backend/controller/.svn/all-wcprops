@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/ecowl/!svn/ver/91/WM-Tippspiel/backend/controller
+END
+userController.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/ecowl/!svn/ver/63/WM-Tippspiel/backend/controller/userController.php
+END
+login.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/ecowl/!svn/ver/65/WM-Tippspiel/backend/controller/login.php
+END
+matchResultsController.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ecowl/!svn/ver/93/WM-Tippspiel/backend/controller/matchResultsController.php
+END

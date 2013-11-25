@@ -1,0 +1,9 @@
+<?php
+	include_once(dirname(__FILE__)."/../../common.php");
+	if((Common::login()==null))
+	{
+		Common::redirect("pages/login.php");
+	}
+	else
+		Common::redirect("pages/profile.php");
+?>

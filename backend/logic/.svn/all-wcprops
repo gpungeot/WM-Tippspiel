@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/ecowl/!svn/ver/85/WM-Tippspiel/backend/logic
+END
+updateBets.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/ecowl/!svn/ver/78/WM-Tippspiel/backend/logic/updateBets.php
+END
+validateRegistration.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/ecowl/!svn/ver/67/WM-Tippspiel/backend/logic/validateRegistration.php
+END
+scoreCalculator.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/ecowl/!svn/ver/61/WM-Tippspiel/backend/logic/scoreCalculator.php
+END
+payingUser.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/ecowl/!svn/ver/85/WM-Tippspiel/backend/logic/payingUser.php
+END

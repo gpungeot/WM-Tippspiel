@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/ecowl/!svn/ver/91/WM-Tippspiel/backend/configuration
+END
+setUpWorldCup.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/ecowl/!svn/ver/90/WM-Tippspiel/backend/configuration/setUpWorldCup.php
+END
+addFeeColumn.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/ecowl/!svn/ver/85/WM-Tippspiel/backend/configuration/addFeeColumn.php
+END
+addRealGoalColumns.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/ecowl/!svn/ver/88/WM-Tippspiel/backend/configuration/addRealGoalColumns.php
+END
+time.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/ecowl/!svn/ver/58/WM-Tippspiel/backend/configuration/time.php
+END
+installTables.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/ecowl/!svn/ver/60/WM-Tippspiel/backend/configuration/installTables.php
+END
+config.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/ecowl/!svn/ver/51/WM-Tippspiel/backend/configuration/config.php
+END
+dbWrapper.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/ecowl/!svn/ver/93/WM-Tippspiel/backend/configuration/dbWrapper.php
+END
+addHistoryRankColumn.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ecowl/!svn/ver/93/WM-Tippspiel/backend/configuration/addHistoryRankColumn.php
+END
