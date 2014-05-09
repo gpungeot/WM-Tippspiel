@@ -138,9 +138,7 @@ class Game {
 		return $this->score->isNotEmpty();
 	}
 	
-	public function __construct($gameid, $type, $time, $team1, $team2, $goals1, $goals2,$endGoals1,$endGoals2) {
-		//if(!(($team1 instanceof Team) && ($team2 instanceof Team)))
-		//die("Unknown constructor: Game needs Teams to initialize.");
+	public function __construct($gameid, $type, $time, $team1, $team2, $goals1, $goals2,$endGoals1 = -1,$endGoals2 = -1) {
 		$this->gameid = $gameid;
 		$this->type = $type;
 		$this->time = $time;

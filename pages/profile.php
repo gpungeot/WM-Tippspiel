@@ -5,30 +5,29 @@ Common::loginCheck();
 Common::startPage();
 DbWrapper::connectToDatabase();
 ?>
-<h1>Willkommen zum Tippspiel!</h1>
+<h1>Pronostics</h1>
 <?php
 $userid = Common::$user->getUserId();
-print("<span class=\"points\">Aktuelle Punktzahl: ".DbWrapper::getUserPoints($userid)."</span>");
+print("<span class=\"points\">Nombre de points : ".DbWrapper::getUserPoints($userid)."</span>");
 
 if(!DbWrapper::isPayingUser($userid)) {
 	print("<div class=\"message\" style=\"margin-left: 60px; background-color: #FFFF9B;\">");
 	print("<form action=\"".Config::$absolute_url_path."/backend/logic/payingUser.php\" method=\"post\">");
-	print("<p>Wenn du dich an den Preisen mit <u>3 Euro</u> beteiligen - und nat�rlich auch welche <i>gewinnen</i> - m�chtest, 
-		trag dich bitte mit deinem Passwort hier ein. Ein Preis wird zudem unter allen Einzahlern verlost.</p>");
+	print("<p>Si tu as le démon du jeu, donne 5€ à Guillaume P pour participer au challenge payant. Saisis ton mot de passe ci-dessous pour le confirmer.</p>");
 	print("<input type=\"password\" name=\"password\" size=\"20\" maxlength=\"64\">");
-	print("<input type=\"submit\" value=\"Mitmachen!\">");
+	print("<input type=\"submit\" value=\"J'ai le vice chevillé au corps, je paie !\">");
 	print("</form></div>");
 }
 
 print("<form action=\"".Config::$absolute_url_path."/backend/logic/updateBets.php\" method=\"post\">");
 print("<input type=\"hidden\" name=\"userid\" value=\"".$userid."\">");
 $now = new DateTime();
-$types = array("A"=>"Gruppe A", "B"=>"Gruppe B", "C"=>"Gruppe C", "D"=>"Gruppe D", "E"=>"Gruppe E", "F"=>"Gruppe F",
-				"G"=>"Gruppe G", "H"=>"Gruppe H", "8Fin"=>"Achtelfinale", "4Fin"=>"Viertelfinale", "2Fin"=>"Halbfinale",
-				"3Fin"=>"Spiel um Platz 3", "1Fin"=>"Finale");
+$types = array("A"=>"Groupe A", "B"=>"Groupe B", "C"=>"Groupe C", "D"=>"Groupe D", "E"=>"Groupe E", "F"=>"Groupe F",
+				"G"=>"Groupe G", "H"=>"Groupe H", "8Fin"=>"1/8 finale", "4Fin"=>"1/4 finale", "2Fin"=>"1/2 finale",
+				"3Fin"=>"3e place", "1Fin"=>"Finale");
 
 $teams = DbWrapper::getAllTeams();
-print("<div id=\"worldcupwinner\">Wer wird Weltmeister? ");
+print("<div id=\"worldcupwinner\">Quelle équipe sera championne du monde ?");
 if(Time::getPrelimStart()>$now) {
 	print("<select name=\"worldcupwinner\">");
 	print("<option");
@@ -39,7 +38,7 @@ if(Time::getPrelimStart()>$now) {
 		print(">".$teams[$i]->getName()."</option>");
 	}
 	print("</select>");
-	print("<input type=\"submit\" value=\"Speichern\" name=\"winner\">");
+	print("<input type=\"submit\" value=\"Enregistrer\" name=\"winner\">");
 } else {
 	print("<span class=\"bet\">");
 	print(Common::$user->getCupWinner()==0?"&nbsp;&nbsp;&nbsp;":DbWrapper::getTeamNameById(Common::$user->getCupWinner()));
@@ -72,11 +71,11 @@ foreach($types as $type=>$typetext)
 			print("<td class=\"time\">".$time->format("d. M Y")."<br>".$time->format("H:i")."</td>");
 			$team1 = $value->getFirstTeam();
 			print("<td class=\"team\" style=\"text-align: right;\">");
-			print($team1=="#"?"<i>noch nicht fest</i></td>":$team1."</td>");
+			print($team1=="#"?"<i>Pas encore connu</i></td>":$team1."</td>");
 			print("<td> : </td>");
 			$team2 = $value->getSecondTeam();
 			print("<td class=\"team\">");
-			print($team2=="#"?"<i>noch nicht fest</i></td>":$team2."</td>");
+			print($team2=="#"?"<i>Pas encore connu</i></td>":$team2."</td>");
 			$score = $value->getBet();
 			$pointsClass="";
 			if($score) {
@@ -148,7 +147,7 @@ foreach($types as $type=>$typetext)
 			
 		}
 		print("<tr><td colspan=5 class=\"savebtn\"><h3>");
-		print("<input type=\"submit\" value=\"Speichern\" name=\"matchbet_".$type."\">");
+		print("<input type=\"submit\" value=\"Enregistrer\" name=\"matchbet_".$type."\">");
 		print("</h3></td></tr>");
 		print("</table>");
 		print("</td><td>");
@@ -178,7 +177,7 @@ foreach($types as $type=>$typetext)
 					print("</td></tr>");
 				}
 				print("<tr><td colspan=3 class=\"savebtn\"><h3>");
-				print("<input type=\"submit\" value=\"Speichern\" name=\"group_".$type."\">");
+				print("<input type=\"submit\" value=\"Enregistrer\" name=\"group_".$type."\">");
 				print("</h3></td></tr>");
 			} else {
 				
@@ -210,17 +209,17 @@ foreach($types as $type=>$typetext)
 		}
 		if($correctGroupWinner==2)
 		{
-			print("<tr><td class=\"title\" colspan=6>Gruppen-Sieger korrekt: + 1 Pkt</td></tr>");
+			print("<tr><td class=\"title\" colspan=6>Equipe qualifiée : + 1 Pt</td></tr>");
 		}
 		if($groupCorrect==4)
 		{
-			print("<tr><td class=\"title\" colspan=6>Gruppe komplett korrekt: + 1 Pkt</td></tr>");
+			print("<tr><td class=\"title\" colspan=6>Groupe correct entièrement : + 1 Pt</td></tr>");
 		}		
 		print("</table>");
 		print("</td></tr></table>");
 	}
 }
-print("<input id=\"saveAll\" type=\"submit\" value=\"Alles speichern\" name=\"ALL\">");
+print("<input id=\"saveAll\" type=\"submit\" value=\"Tout enregistrer\" name=\"ALL\">");
 print("</form>");
 Common::endPage();
 ?>

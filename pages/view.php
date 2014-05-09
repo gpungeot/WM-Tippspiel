@@ -9,25 +9,25 @@ $result = DbWrapper::execute("SELECT COUNT(*) FROM `users`");
 $arr = mysql_fetch_array($result);
 $numberOfAllUsers = $arr[0];
 if(!$userid || ($user->getUserId()==NULL)) {
-	Common::modalMessage("Dieser Tippspieler ist uns unbekannt.", "ranking.php");
+	Common::modalMessage("Compte inconnu.", "ranking.php");
 }
 Common::startPage();
-print("<h2>Tipps von <i>".$user->getName()." ".$user->getSurname()."</i></h2>");
+print("<h2>Pronostics de <i>".$user->getName()." ".$user->getSurname()."</i></h2>");
 $history = DbWrapper::getUserHistory($userid);
 $ranks = "";
 foreach($history as $value) {
 	$ranks .= $value[2].",";
 }
 print("<p>Verlauf:<br><img src=\"".Config::$absolute_url_path."pages/chartFactory.php?ranks=".$ranks."&max=".$numberOfAllUsers."\" style=\"border: 2px solid lightgray;\"></p>");
-print("<span class=\"points\">Aktuelle Punktzahl: ".DbWrapper::getUserPoints($userid)."</span>");
+print("<span class=\"points\">Nombre de points : ".DbWrapper::getUserPoints($userid)."</span>");
 
 $now = new DateTime();
-$types = array("A"=>"Gruppe A", "B"=>"Gruppe B", "C"=>"Gruppe C", "D"=>"Gruppe D", "E"=>"Gruppe E", "F"=>"Gruppe F",
-				"G"=>"Gruppe G", "H"=>"Gruppe H", "8Fin"=>"Achtelfinale", "4Fin"=>"Viertelfinale", "2Fin"=>"Halbfinale",
-				"3Fin"=>"Spiel um Platz 3", "1Fin"=>"Finale");
+$types = array("A"=>"Gruppe A", "B"=>"Groupe B", "C"=>"Groupe C", "D"=>"Groupe D", "E"=>"Groupe E", "F"=>"Groupe F",
+				"G"=>"Groupe G", "H"=>"Groupe H", "8Fin"=>"1/8 finale", "4Fin"=>"1/4 finale", "2Fin"=>"1/2 finale",
+				"3Fin"=>"3e place", "1Fin"=>"Finale");
 
 $teams = DbWrapper::getAllTeams();
-print("<div id=\"worldcupwinner\">Wer wird Weltmeister? ");
+print("<div id=\"worldcupwinner\">Quelle équipe sera championne du monde ?");
 print("<span class=\"viewbet\">");
 print($user->getCupWinner()==0?"&nbsp;&nbsp;&nbsp;":DbWrapper::getTeamNameById($user->getCupWinner()));
 print("</span>");
@@ -51,11 +51,11 @@ foreach($types as $type=>$typetext)
 				print("<td class=\"time\">".$time->format("d. M Y")."<br>".$time->format("H:i")."</td>");
 				$team1 = $value->getFirstTeam();
 				print("<td class=\"team\" style=\"text-align: right;\">");
-				print($team1=="#"?"<i>noch nicht fest</i></td>":$team1."</td>");
+				print($team1=="#"?"<i>Pas encore connu</i></td>":$team1."</td>");
 				print("<td> : </td>");
 				$team2 = $value->getSecondTeam();
 				print("<td class=\"team\">");
-				print($team2=="#"?"<i>noch nicht fest</i></td>":$team2."</td>");
+				print($team2=="#"?"<i>Pas encore connu</i></td>":$team2."</td>");
 				$score = $value->getBet();
 				$pointsClass="";
 				if($score) {
@@ -135,11 +135,11 @@ foreach($types as $type=>$typetext)
 		
 		if($correctGroupWinner==2)
 		{
-			print("<tr><td class=\"title\" colspan=6>Gruppen-Sieger korrekt: + 1 Pkt</td></tr>");
+			print("<tr><td class=\"title\" colspan=6>Equipe qualifiée : + 1 Pt</td></tr>");
 		}
 		if($groupCorrect==4)
 		{
-			print("<tr><td class=\"title\" colspan=6>Gruppe komplett korrekt: + 1 Pkt</td></tr>");
+			print("<tr><td class=\"title\" colspan=6>Groupe correct entièrement : + 1 Pt</td></tr>");
 		}		
 		print("</table>");
 		print("</td></tr></table>");

@@ -3,94 +3,73 @@ include_once (dirname(__FILE__)."/../common.php");
 
 Common::startPage();
 ?>
-<h1>Spielregeln</h1>
+<h1>Règles du jeu</h1>
 <div class="text">
-<p>Jedes Spiel hat irgendwelche Regeln... Dieses ab jetzt auch!</p>
-<h3>Teilnahme</h3>
-<p>Teilnehmen kann jeder, der sich durch das Anmeldeformular eintr�gt
-und dann vom Spieladministrator freigeschaltet wird. Das bedeutet damit,
-dass das hier ein "geschlossenes" Tippspiel f�r Freunde der
-Tippspielorganisatoren ist.</p>
-<h3>Tippen</h3>
-<p>Getippt werden:
+<h3>Participation</h3>
+<p>Cette compétition est réservée à CanalTP (prestataires inclus bien sûr). Tout le monde peut s'inscrire mais tous les comptes doivent être validés donc pas la peine d'inscrire quelqu'un de l'extérieur, il serait refusé.</p>
+<h3>Pronostics</h3>
+<p>Les points suivants sont pronosticables :
 
 
 <ul>
-	<li>der Weltmeister</li>
-	<li>die einzelnen Spielergebnisse</li>
-	<li>und die Mannschafts-Endpositionen innerhalb der Vorgruppen</li>
+	<li>Le résultat de chaque match</li>
+	<li>La position de chaque équipe au sein de sa poule à la fin de la première phase</li>
+	<li>L'équipe championne du monde</li>
 </ul>
-Dabei gilt: der Weltmeister muss bis zum Beginn der WM getippt sein, und
-Positionstipps m�ssen bis zum Beginn des ersten Spiels der zugeh�rigen
-Gruppe abgegeben werden. Die Spieltipps kannst du immer bis zum Anpfiff
-des Spiels eintragen; hat das Spiel begonnen, ist das nicht mehr
-m�glich.
-</p>
-<p>Getippt wird das Ergebnis nach 90 Minuten. Das hei�t bis zum Abpfiff der regul�ren Spielzeit. Tore in der Verl�ngerung z�hlen nicht mehr.</p>
-<h3>Bewertung</h3>
-<p>F�r ein richtig getipptes <b>Spielergebnis</b> erh�ltst du 3 Punkte.
-Ist nicht das exakte Ergebnis aber die Tendenz (also Gewonnen, Verloren,
-Unentschieden) korrekt, bekommst du einen Punkt. Ist zudem deine
-Tordifferenz die gleiche wie im tats�chlichen Ergebnis, kriegst du statt
-einem sogar zwei Punkte.
+Le pronostic de l'équipe championne du monde doit être fait avant le début de la compétition. Le pronostic des positions finales des équipes d'une poule doit être fait avant le début du 1er match de cette poule. Chaque match est pronosticable jusqu'à l'heure du début de celui-ci.</p>
+<p>Le résultat de chaque match est celui de la fin du temps réglementaire. Les éventuelles prolongations ne sont pas prises en compte.</p>
+<h3>Points</h3>
+<p>Chaque score de match exact rapporte 3 points. Un résultat exact sans score exact (ex : 2-0 pronostiqué, 2-1 au final) rapporte 1 point. Dans ce cas une différence de buts correcte (ex : 2-0 pronostiqué, 3-1 au final) rapporte 1 deuxième point.
 
 
-<p><i>Beispiele:</i>
+<p><i>Exemples:</i>
 
 
 <table class="matchbets" style="text-align: center;">
 	<tr>
-		<td class="bet">getippt</td>
-		<td class="viewbet">tats�chlich</td>
-		<td class="points">Punkte</td>
+		<td class="bet">Pronostic</td>
+		<td class="viewbet">Score réel</td>
+		<td class="points">Points</td>
 	</tr>
 	<tr>
 		<td>2:0</td>
 		<td>0:1</td>
 		<td><b>0</b></td>
-		<td style="text-align: right; background-color: white;">falsch</td>
+		<td style="text-align: right; background-color: white;">faux</td>
 	</tr>
 	<tr>
 		<td>1:3</td>
 		<td>1:2</td>
 		<td><b>1</b></td>
-		<td style="text-align: right; background-color: white;">Tendenz</td>
+		<td style="text-align: right; background-color: white;">résultat exact sans score exact</td>
 	</tr>
 	<tr>
 		<td>2:1</td>
 		<td>1:0</td>
 		<td><b>2</b></td>
-		<td style="text-align: right; background-color: white;">Tordifferenz!</td>
+		<td style="text-align: right; background-color: white;">résultat exact sans score exact mais différence de buts exacte !</td>
 	</tr>
 	<tr>
 		<td>4:4</td>
 		<td>4:4</td>
 		<td><b>3</b></td>
-		<td style="text-align: right; background-color: white;">richtig!</td>
+		<td style="text-align: right; background-color: white;">Tout bon : champagne !</td>
 	</tr>
 </table>
 </p>
-Nun zu den <b>Gruppenpositionen</b>: <br>
-Steht ein Team am Ende der Vorrunde auf genau dem Platz, den du getippt
-hast, erh�ltst du f�r dieses Team einen Punkt. Hast du die Einteilung
-wer weiterkommt - und wer nicht - richtig getroffen, erh�ltst du f�r
-diese Gruppe zus�tzlich einen Punkt. Hast du alle Teams an die richtige
-Stelle gesetzt, bekommst du noch einen Punkt obendrauf. Damit kannst du
-also maximal <b>4</b> <i>(vier Teams richtig)</i> <b>+ 1</b> <i>(genau
-deine 2 Favoriten kommen</i> weiter) <b>+ 1</b> <i>(alle Teams richtig)</i>
-= <b>6</b> Punkte erreichen.
+<b>Position des équipes dans les groupes </b>: <br>
+1 équipe à la bonne place à la fin de la phase de poule rapporte 1 point. Trouver les 2 équipes qualifiées rapporte 1 point. Toutes les équipes à la bonne position rapporte un bonus d'1 point.
+Il est donc possible de gagner 6 points au maximum par poule.</p>
+<p>Trouver <b>l'équipe championne du monde</b> rapporte 5 points.</p>
+<h3>Prix</h3>
+<p>
+<ul>
+	<li>Au 1er : 50% des sommes misées</li>
+	<li>Au 2eme : 30% des sommes misées</li>
+	<li>Au 3eme : 20% des sommes misées</li>
+</ul>
+Il est bien sûr entendu que les mises seront enregistrées et que seul un joueur qui a <b>participé à la compétition payante et qui a effectivement payé avant le début de celle-ci </b>peut revendiquer un prix.
 </p>
-<p>F�r den richtigen <b>Weltmeistertipp</b> kassierst du 5 Punkte.</p>
-<h3>Preise</h3>
-<p>Wird es geben. Dazu in Zukunft noch n�heres. Jedenfalls steht fest:
-Wer sich mit 3 Euro beteiligen m�chte ist gewinnberechtigt. Die Preise
-werden dann durch dieses Geld finanziert. Es wird aber nicht nur einen
-Preis geben, sondern die besten Tippspieler erhalten jeweils einen
-Preis. Au�erdem wird ein Preis unter allen (zahlenden) Tippspielern
-verlost. Die tats�chliche Anzahl der Preise und aus was der einzelne
-Preis bestehen wird, h�ngt von der finanziellen Beteiligung und der
-Kreativit�t der Preisaussucher ab ;-). Dabei kann ein Preis auch
-durchaus mal speziell auf seinen Gewinner zugeschnitten sein...</p>
 </div>
 <br style="clear: both">
 <?php

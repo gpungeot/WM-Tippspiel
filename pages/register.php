@@ -14,15 +14,15 @@ $mail = $_GET["mail"];
 <input name="path" type="hidden" value="pages/register.php">
 <table cellspacing="20">
 	<tr>
-		<td>Email:</td>
+		<td>Email :</td>
 		<td><input name="emailaddress" type="text" size="64" maxlength="64" value="<?php print($mail?$mail:"");?>"></td>
 	</tr>
 	<tr>
-		<td>Passwort:</td>
+		<td>Mot de passe :</td>
 		<td><input name="password" type="password" size="64" maxlength="40"></td>
 	</tr>
 	<tr>
-		<td>Passwort wiederholen:</td>
+		<td>Confirmation du mot de passe :</td>
 		<td><input name="pwcopy" type="password" size="64" maxlength="40"></td>
 	</tr>
 	<tr>
@@ -30,16 +30,16 @@ $mail = $_GET["mail"];
 		</td>
 	</tr>
 	<tr>
-		<td>Vorname:</td>
+		<td>Prénom :</td>
 		<td><input name="name" type="text" size="64" maxlength="64" value="<?php print($name?$name:"");?>"></td>
 	</tr>
 	<tr>
-		<td>Nachname:</td>
+		<td>Nom :</td>
 		<td><input name="surname" type="text" size="64" maxlength="64" value="<?php print($surname?$surname:"");?>"></td>
 	</tr>
 	
 	<tr>
-		<td colspan="2"><input type="submit" value="Anmelden"
+		<td colspan="2"><input type="submit" value="Créer mon compte"
 			style="height: 30px; float: right;"></td>
 	</tr>
 </table>

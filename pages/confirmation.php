@@ -2,6 +2,6 @@
 include_once (dirname(__FILE__)."/../common.php");
 
 Common::startPage();
-print("Deine Anmeldung wurde gespeichert, du bekommst eine Email, wenn dein Account freigeschaltet ist.");
+print("Demande enregistrée. Ton compte sera validé prochainement. Tu recevras alors un email.");
 Common::endPage();
 ?>

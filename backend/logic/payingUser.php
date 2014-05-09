@@ -3,9 +3,9 @@ include_once (dirname(__FILE__)."/../../common.php");
 Common::loginCheck();
 
 if(Common::$user->getPassword()!=md5($_POST["password"])) {
-	Common::modalMessage("Du hast ein falsches Passwort eingegeben.", "profile.php");
+	Common::modalMessage("Mot de passe incorrect", "profile.php");
 } else {
 	DbWrapper::setAsPayingUser(Common::$user->getUserId());
-	Common::modalMessage("Jetzt hast du die Möglichkeit einen tollen Preis zu ergattern! (Bitte bezahle die 3 Euro bei nächster Gelegenheit)", "profile.php");
+	Common::modalMessage("Tu fais dÃ©sormais partie de la compÃ©tition. Si tu n'as pas encore payÃ© ton obole... Ben fais-le.", "profile.php");
 }
 ?>

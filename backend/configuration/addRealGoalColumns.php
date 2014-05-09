@@ -4,5 +4,5 @@ $dblink = mysql_connect(Config::$mysql_path, Config::$mysql_user, Config::$mysql
 mysql_query("ALTER TABLE `matches` ADD COLUMN `realgoal1` TINYINT",$dblink);
 mysql_query("ALTER TABLE `matches` ADD COLUMN `realgoal2` TINYINT",$dblink);
 $e = mysql_error($dblink);
-print($e?$e:"Spalten 'realgoal1' und 'realgoal2' wurde zu 'matches' hinzugefügt.");
+print($e?$e:"Champs 'realgoal1' et 'realgoal2' ajoutés à la table 'matches'.");
 ?>

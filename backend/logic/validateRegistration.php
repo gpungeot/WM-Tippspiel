@@ -13,23 +13,23 @@ $message = "";
 
 if($pw == null) {
 	$valid = false;
-	$message .= "Du brauchst ein <b>Passwort</b>, um mitmachen zu können.<br>";
+	$message .= "<b>Mot de passe</b> obligatoire.<br>";
 }
 if($pw != $pwcopy) {
 	$valid = false;
-	$message .= "Dein <b>wiederholtes Passwort</b> ist unterschiedlich.<br>";
+	$message .= "La <b>confirmation du mot de passe</b> est incorrecte.<br>";
 }
 if($name == null) {
 	$valid = false;
-	$message .= "Du musst deinen <b>Vornamen</b> angeben.<br>";
+	$message .= "<b>PrÃ©nom</b> obligatoire (mais tu peux mentir).<br>";
 }
 if($surname == null) {
 	$valid = false;
-	$message .= "Gib bitte deinen <b>Nachnamen</b> an.<br>";
+	$message .= "<b>Nom</b> obligatoire (mais tu peux mentir).<br>";
 }
 if(($mail == null) || (strpos($mail, "@")==false)) {
 	$valid = false;
-	$message .= "Wir benötigen eine gültige <b>eMail-Adresse</b>, um dich freizuschalten.<br>";
+	$message .= "<b>Adresse email</b> incorrecte.<br>";
 }
 
 if(!$valid) {

@@ -6,7 +6,7 @@
 	if($_POST["action"]=="acceptUser")
 	{
 		$user=DbWrapper::getUserById($id);
-		@mail($user->getMailAddress(),"WM Tippspiel","Du kannst jetzt bei unserem Tippspiel mitmachen: ".Config::$absolute_url_path);
+		@mail($user->getMailAddress(),"Pronos coupe du monde 2014","Compte validé. Go ! Go ! Go ! : ".Config::$absolute_url_path);
 		DbWrapper::acceptUser($id);
 		
 	}
@@ -14,7 +14,7 @@
 	if($_POST["action"]=="rejectUser")
 	{
 		$user=DbWrapper::getUserById($id);
-		@mail($user->getMailAddress(),"WM Tippspiel","Du darfst leider nicht mitspielen");
+		@mail($user->getMailAddress(),"Pronos coupe du monde 2014","C'est un jeu privé, désolé.");
 		DbWrapper::deleteUser($id);
 	}
 	

@@ -12,6 +12,6 @@ Passwort
 </form>
 
 <?php
-print("Noch nicht angemeldet? <a href=\"".Config::$absolute_url_path."pages/register.php\">Hier</a> registrieren.");
+print("Pas encore inscrit(e) ? C'est là : <a href=\"".Config::$absolute_url_path."pages/register.php\">inscription</a>.");
 Common::endPage();
 ?>

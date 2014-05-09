@@ -5,7 +5,7 @@ Common::loginCheck();
 Common::startPage();
 DbWrapper::connectToDatabase();
 
-print("<h1>Punktestand</h1>");
+print("<h1>Classement</h1>");
 
 $users = DbWrapper::getUsers();
 foreach($users as $user) {

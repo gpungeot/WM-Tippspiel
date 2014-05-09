@@ -15,14 +15,13 @@ Common::startPage();
 print("<form action=\"".Config::$absolute_url_path."/backend/controller/matchResultsController.php\" method=\"post\">");
 $now = new DateTime();
 print($now->format("Y-m-d H:i:s")."<br>");
-$types = array("A"=>"Gruppe A", "B"=>"Gruppe B", "C"=>"Gruppe C", "D"=>"Gruppe D", "E"=>"Gruppe E", "F"=>"Gruppe F",
-				"G"=>"Gruppe G", "H"=>"Gruppe H", "8Fin"=>"Achtelfinale", "4Fin"=>"Viertelfinale", "2Fin"=>"Halbfinale",
-				"3Fin"=>"Spiel um Platz 3", "1Fin"=>"Finale");
+$types = array("A"=>"Gruppe A", "B"=>"Groupe B", "C"=>"Groupe C", "D"=>"Groupe D", "E"=>"Groupe E", "F"=>"Groupe F",
+				"G"=>"Groupe G", "H"=>"Groupe H", "8Fin"=>"1/8 finale", "4Fin"=>"1/4 finale", "2Fin"=>"1/2 finale",
+				"3Fin"=>"3e place", "1Fin"=>"Finale");
 $teams=DbWrapper::getAllTeamsAsHashTable();
 foreach($types as $type=>$typetext)
 {
 	$matches = DbWrapper::getMatchesByType( $type);
-	//print_r($matches);
 	if($matches) {
 		print("<table class=\"matchbets\">");
 		print("<tr><td class=\"title\" colspan=6><h3>".$typetext."</h3></td></tr>");
@@ -53,11 +52,11 @@ foreach($types as $type=>$typetext)
 			}
 			$team1 = $value->getFirstTeam();
 			print("<td class=\"team\" style=\"text-align: right;\">");
-			print($team1=="0"?"<i>noch nicht fest</i></td>":$teams[$team1]->getName()."</td>");
+			print($team1=="0"?"<i>Pas encore connu</i></td>":$teams[$team1]->getName()."</td>");
 			print("<td> : </td>");
 			$team2 = $value->getSecondTeam();
 			print("<td class=\"team\">");
-			print($team2=="0"?"<i>noch nicht fest</i></td>":$teams[$team2]->getName()."</td>");
+			print($team2=="0"?"<i>Pas encore connu</i></td>":$teams[$team2]->getName()."</td>");
 			$score = $value->getScore();
 			$endScore = $value->getEndScore();
 			if($score) {
@@ -131,17 +130,14 @@ foreach($types as $type=>$typetext)
 				
 			} else {
 				print("<td class=\"betdrop\">");
-				//print($score==null?"":$bet1);
-				//print(" : ");
-				//print($score==null?"":$bet2);
 				print("</td>");
 			}
 			if(!$over) {
-				print("<td> Eintragen ab ".$time->format("d. M Y H:i")."</td>");
+				print("<td>Saisir aprÃ¨s ".$time->format("d. M Y H:i")."</td>");
 			}
 		}
 		print("<tr><td colspan=5 class=\"savebtn\"><h3>");
-		print("<input type=\"submit\" value=\"Speichern\" name=\"matchbet_".$type."\">");
+		print("<input type=\"submit\" value=\"Enregistrer\" name=\"matchbet_".$type."\">");
 		print("</h3></td></tr>");
 		print("</table>");
 
@@ -149,5 +145,5 @@ foreach($types as $type=>$typetext)
 		
 	}
 }
-print("<input type=\"submit\" value=\"Alle Änderungungen speichern\" name=\"ALL\">");
+print("<input type=\"submit\" value=\"Enregistrer tout\" name=\"ALL\">");
 print("</form>");

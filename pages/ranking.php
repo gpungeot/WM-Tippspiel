@@ -5,7 +5,7 @@ Common::loginCheck();
 Common::startPage();
 DbWrapper::connectToDatabase();
 
-print("<h1>Punktestand</h1>");
+print("<h1>Classement</h1>");
 
 $users = DbWrapper::getRanking(); //userid->(name, points) sorted by points desc
 $history = DbWrapper::getLatestScoreHistory(); //userid->(points, position)
@@ -35,7 +35,7 @@ foreach($users as $user=>$value) {
 	}
 	print("<td class=\"");
 	print(Common::$user->getUserId()==$user?"myname":"name");
-	print("\"><a href=\"".Config::$absolute_url_path."pages/view.php?user=".$user."\">".$value[0]."</a></td><td class=\"bet\">".$value[1]." Punkte</td>");
+	print("\"><a href=\"".Config::$absolute_url_path."pages/view.php?user=".$user."\">".$value[0]."</a></td><td class=\"bet\">".$value[1]." Points</td>");
 	
 	print("</tr>");
 	//print("(".$user.":".$history[$user][1].")");

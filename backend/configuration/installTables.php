@@ -23,6 +23,7 @@ $tables["score"] = "`time` DATETIME NOT NULL, `userid` INT(10) NOT NULL,
 
 // create tables
 print(DbWrapper::createTables($tables));
-$user=new User(1,"Admin","istrator","enton","Admin");
+$user=new User(1,"Admin","istrator","","Admin");
 DbWrapper::addUser($user);
+print('OK');
 ?>
