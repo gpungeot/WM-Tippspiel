@@ -3,6 +3,8 @@ include_once(dirname(__FILE__)."/../../common.php");
 Common::loginCheck();
 $types = array("A","B","C","D","E","F","G","H","8Fin","4Fin","2Fin","3Fin","1Fin");
 
+//var_dump($_POST);die;
+
 $historyDates = array("2010-06-13 00:00:00",
         "2014-06-14 00:00:00","2014-06-14 10:00:00",
         "2014-06-15 00:00:00","2014-06-15 10:00:00",
@@ -41,11 +43,17 @@ foreach($types as $key=>$value) {
       $score2=$_POST[$gameId."b"];
       $score1e=$_POST[$gameId."a2"];
       $score2e=$_POST[$gameId."b2"];
+      
+      $team1 = $_POST[$gameId."team1"];
+      $team2 = $_POST[$gameId."team2"];
 
       if(($score1=="")||($score2==""))
         DbWrapper::setGameResult($gameId,-1,-1);
       else
         DbWrapper::setGameResult($gameId,$score1,$score2,$score1e,$score2e);
+        
+      if($team1 != '0' || $team2 != '0')
+        DbWrapper::setGameTeams($gameId,$team1, $team2);
     }
   }
 }

@@ -68,7 +68,7 @@ foreach($types as $type=>$typetext)
       else
       {
         // 1/8Fin and after
-        print("<select name=\"match_team1_$key\">");
+        print("<select name=\"".$value->getGameId()."team1\">");
         print("<option value=\"0\"".($team1 == "0" ? " selected=\" \"" : ""));
         print("> </option>");
         for ($i=0; $i<sizeof($all_teams); $i++) {
@@ -81,7 +81,7 @@ foreach($types as $type=>$typetext)
         print("<td> - </td>");
         print("<td class=\"team\">");
 
-        print("<select name=\"match_team2_$key\">");
+        print("<select name=\"".$value->getGameId()."team2\">");
         print("<option value=\"0\"".($team2 == "0" ? " selected=\" \"" : ""));
         print("> </option>");
         for ($i=0; $i<sizeof($all_teams); $i++) {

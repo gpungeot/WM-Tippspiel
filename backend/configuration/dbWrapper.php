@@ -307,7 +307,13 @@ class DbWrapper {
     }
     mysql_query("UPDATE `matches` SET `goals1`='".mysql_real_escape_string($goals1)."', `goals2`='".mysql_real_escape_string($goals2)."'
           , `realgoal1`='".mysql_real_escape_string($endgoals1)."' ,`realgoal2`='".mysql_real_escape_string($endgoals2)."'
-           WHERE `id` = '".mysql_real_escape_string($gameId)."'", self::$dblink);  
+           WHERE `id` = '".mysql_real_escape_string($gameId)."'", self::$dblink);
+  }
+
+
+  public static function setGameTeams($gameId,$team1, $team2) {
+    mysql_query("UPDATE `matches` SET `team1`='".mysql_real_escape_string($team1)."', `team2`='".mysql_real_escape_string($team2)."'
+           WHERE `id` = '".mysql_real_escape_string($gameId)."'", self::$dblink);
   }
 
 
