@@ -6,7 +6,8 @@
 	if($_POST["action"]=="acceptUser")
 	{
 		$user=DbWrapper::getUserById($id);
-		@mail($user->getMailAddress(),"Pronos coupe du monde 2014","Compte validé. Go ! Go ! Go ! : ".Config::$absolute_url_path);
+		$header = "From: \"Brasil world cup\"<noreply@brevesdebureau.fr>";
+		@mail($user->getMailAddress(),"Pronos coupe du monde 2014","Compte validé. Go ! Go ! Go ! : ".Config::$absolute_url_path, $header);
 		DbWrapper::acceptUser($id);
 		
 	}
@@ -14,7 +15,8 @@
 	if($_POST["action"]=="rejectUser")
 	{
 		$user=DbWrapper::getUserById($id);
-		@mail($user->getMailAddress(),"Pronos coupe du monde 2014","C'est un jeu privé, désolé.");
+		$header = "From: \"Brasil world cup\"<noreply@brevesdebureau.fr>";
+		@mail($user->getMailAddress(),"Pronos coupe du monde 2014 - Inscription refusée","C'est un jeu privé, désolé.", $header);
 		DbWrapper::deleteUser($id);
 	}
 	

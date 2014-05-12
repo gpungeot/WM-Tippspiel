@@ -112,7 +112,7 @@ class DbWrapper {
   }
 
   public static function getRanking() {
-    $result = mysql_query("SELECT `id`, `name`, `surname`, `points` FROM `users` WHERE /*(NOT `name` = 'Admin') AND */`accepted` = '1' ORDER BY `points` DESC", self::$dblink);
+    $result = mysql_query("SELECT `id`, `name`, `surname`, `points` FROM `users` WHERE (NOT `name` = 'Admin') AND `accepted` = '1' ORDER BY `points` DESC", self::$dblink);
     $e=mysql_error(self::$dblink);
     if($e)
       print("MySQLError: ".$e);
