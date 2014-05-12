@@ -30,6 +30,11 @@ $teams = DbWrapper::getAllTeams();
 print("<div id=\"worldcupwinner\">Quelle équipe sera championne du monde ?");
 print("<span class=\"viewbet\">");
 print($user->getCupWinner()==0?"&nbsp;&nbsp;&nbsp;":DbWrapper::getTeamNameById($user->getCupWinner()));
+// world cup winner evaluation
+// Spain? -> teamid = 29
+if($user->getCupWinner() == 0) {
+  print('<span class="smallpoints">5</span>');
+}
 print("</span>");
 print("</div>");
 
@@ -135,7 +140,7 @@ foreach($types as $type=>$typetext)
 		
 		if($correctGroupWinner==2)
 		{
-			print("<tr><td class=\"title\" colspan=6>Equipe qualifiée : + 1 Pt</td></tr>");
+			print("<tr><td class=\"title\" colspan=6>2 équipes qualifiées : + 1 Pt</td></tr>");
 		}
 		if($groupCorrect==4)
 		{

@@ -107,10 +107,12 @@ foreach($users as $user)
 
     //history
     $gameTime = new DateTime($game->getTime());
-    while(($historyCount<sizeof($historyDates)) && (new DateTime($historyDates[$historyCount]) < $gameTime) && (new DateTime($historyDates[$historyCount]) < $now)) {
-      DbWrapper::updateScoreHistory($historyDates[$historyCount], $userid, $userPoints);
+    while(($historyCount<sizeof($historyDates)) && (new DateTime($historyDates[$historyCount]) < $now)) {
+      //DbWrapper::updateScoreHistory($historyDates[$historyCount], $userid, $userPoints);
       $historyCount++;
     }
+    if(isset($historyDates[$historyCount-1]))
+      DbWrapper::updateScoreHistory($historyDates[$historyCount-1], $userid, $userPoints);
 
     if(($game->getFirstTeamGoals()!=-1)&&($game->getSecondTeamGoals()!=-1)) {
       $gameTendency=0;
@@ -138,13 +140,8 @@ foreach($users as $user)
         $userPoints+=1;
         //print("Goals OK ");
       }
-      print($user->getName()." - ".$game->getFirstTeamGoals()." : ".$game->getSecondTeamGoals()."  getippt: ".$userMatch["goals1"]." : ".$userMatch["goals2"]." punkte: ".$userPoints."<br>");
+      //print($user->getName()." - ".$game->getFirstTeamGoals()." : ".$game->getSecondTeamGoals()."  getippt: ".$userMatch["goals1"]." : ".$userMatch["goals2"]." punkte: ".$userPoints."<br>");
     }
-  }
-
-  while(($historyCount<sizeof($historyDates)) && (new DateTime($historyDates[$historyCount]) < $now)) {
-    DbWrapper::updateScoreHistory($historyDates[$historyCount], $userid, $userPoints);
-    $historyCount++;
   }
 
   //start group valuation
@@ -196,6 +193,9 @@ foreach($users as $user)
     $userPoints += 5;
   }
 
+  if(isset($historyDates[$historyCount-1]))
+    DbWrapper::updateScoreHistory($historyDates[$historyCount-1], $userid, $userPoints);
+    
   DbWrapper::updateUserPoints($userid,$userPoints);
 }
 

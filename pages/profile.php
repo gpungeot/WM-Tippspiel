@@ -8,7 +8,7 @@ DbWrapper::connectToDatabase();
 <h1>Pronostics</h1>
 <?php
 $userid = Common::$user->getUserId();
-//print("<span class=\"points\">Nombre de points : ".DbWrapper::getUserPoints($userid)."</span>");
+print("<span class=\"points\">Nombre de points : ".DbWrapper::getUserPoints($userid)."</span>");
 
 if(!DbWrapper::isPayingUser($userid)) {
 	print("<div class=\"message\" style=\"margin-left: 35px; background-color: #FFFF9B;\">");
@@ -43,6 +43,12 @@ if(Time::getPrelimStart()>$now) {
 } else {
 	print("<span class=\"bet\">");
 	print(Common::$user->getCupWinner()==0?"&nbsp;&nbsp;&nbsp;":DbWrapper::getTeamNameById(Common::$user->getCupWinner()));
+	// world cup winner evaluation
+  // Spain? -> teamid = 29
+  if(Common::$user->getCupWinner() == 0) {
+    print('<span class="smallpoints">5</span>');
+  }
+
 	print("</span>");
 	if(Time::getWorldCupEnd()<$now) {
 		//print(winner);
