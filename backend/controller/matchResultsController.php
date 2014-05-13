@@ -188,7 +188,7 @@ foreach($users as $user)
 
   // world cup winner evaluation
   // Spain? -> teamid = 29
-  if($user->getCupWinner() == 0) {
+  if($user->getCupWinner() == -10) {
     $winnerPoints[$userid] += 5;
     $userPoints += 5;
   }

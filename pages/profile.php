@@ -45,7 +45,7 @@ if(Time::getPrelimStart()>$now) {
 	print(Common::$user->getCupWinner()==0?"&nbsp;&nbsp;&nbsp;":DbWrapper::getTeamNameById(Common::$user->getCupWinner()));
 	// world cup winner evaluation
   // Spain? -> teamid = 29
-  if(Common::$user->getCupWinner() == 0) {
+  if(Common::$user->getCupWinner() == -10) {
     print('<span class="smallpoints">5</span>');
   }
 

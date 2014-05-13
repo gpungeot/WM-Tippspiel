@@ -32,7 +32,7 @@ print("<span class=\"viewbet\">");
 print($user->getCupWinner()==0?"&nbsp;&nbsp;&nbsp;":DbWrapper::getTeamNameById($user->getCupWinner()));
 // world cup winner evaluation
 // Spain? -> teamid = 29
-if($user->getCupWinner() == 0) {
+if($user->getCupWinner() == -10) {
   print('<span class="smallpoints">5</span>');
 }
 print("</span>");

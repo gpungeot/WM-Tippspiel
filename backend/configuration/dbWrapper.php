@@ -80,7 +80,11 @@ class DbWrapper {
       if($e)
         return "MySQLError: ".$e;
       else
+      {
+        $header = "From: \"Brasil world cup\"<noreply@brevesdebureau.fr>";
+	     	@mail("gpungeot@gmail.com","Inscription pronos coupe du monde 2014","Tout est dans le titre.", $header);
         return true;
+      }
     }
     else return false;
   }
