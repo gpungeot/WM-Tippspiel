@@ -52,7 +52,7 @@ class DbWrapper {
   }
 
   public static function getUserByEmail($email) {
-    $result = mysql_query("SELECT * FROM `users` WHERE `email` = '".mysql_real_escape_string($email)."'", self::$dblink);
+    $result = mysql_query("SELECT * FROM `users` WHERE `email` = '".mysql_real_escape_string($email)."' and (`siteid` = ".Config::$siteid." OR `email` = 'Admin')", self::$dblink);
     if($result) {
       $arr = mysql_fetch_array($result, MYSQL_ASSOC);
       if(!isset($arr["id"]))
@@ -69,12 +69,13 @@ class DbWrapper {
    */
   public static function addUser($user) {
     if($user instanceof User) {
-      $fields = "( name, surname, password, email, accepted)";
+      $fields = "( name, surname, password, email, accepted, siteid)";
       $values = "('"
       .mysql_real_escape_string($user->getName())."', '"
       .mysql_real_escape_string($user->getSurname())."', '"
       .mysql_real_escape_string(md5($user->getPassword()))."', '"
-      .mysql_real_escape_string($user->getMailAddress())."', '0')";
+      .mysql_real_escape_string($user->getMailAddress())."', '0', '"
+      .Config::$siteid.")";
       mysql_query("INSERT INTO `users` ".$fields." VALUES ".$values, self::$dblink);
       $e=mysql_error(self::$dblink);
       if($e)
@@ -90,7 +91,7 @@ class DbWrapper {
   }
 
   public static function getUserRequests() {
-    $result = mysql_query("SELECT * FROM `users` WHERE `accepted` != '1'", self::$dblink);
+    $result = mysql_query("SELECT * FROM `users` WHERE `accepted` != '1' AND `siteid` = ".Config::$siteid, self::$dblink);
     $users=array();
     if($result) {
       while($arr = mysql_fetch_array($result, MYSQL_ASSOC))
@@ -103,7 +104,7 @@ class DbWrapper {
   }
 
   public static function getUsers() {
-    $result = mysql_query("SELECT * FROM `users` WHERE 1 ORDER BY `surname` ASC", self::$dblink);
+    $result = mysql_query("SELECT * FROM `users` WHERE `siteid` = ".Config::$siteid." ORDER BY `surname` ASC", self::$dblink);
     $users=array();
     if($result) {
       while($arr = mysql_fetch_array($result, MYSQL_ASSOC))
@@ -116,7 +117,7 @@ class DbWrapper {
   }
 
   public static function getRanking() {
-    $result = mysql_query("SELECT `id`, `name`, `surname`, `points` FROM `users` WHERE (NOT `name` = 'Admin') AND `accepted` = '1' ORDER BY `points` DESC", self::$dblink);
+    $result = mysql_query("SELECT `id`, `name`, `surname`, `points` FROM `users` WHERE (NOT `name` = 'Admin') AND `accepted` = '1' AND `siteid` = ".Config::$siteid." ORDER BY `points` DESC", self::$dblink);
     $e=mysql_error(self::$dblink);
     if($e)
       print("MySQLError: ".$e);
@@ -526,7 +527,7 @@ class DbWrapper {
     $latest = $tarr[0];
 
     $result = mysql_query("SELECT `userid`, `points` FROM `score` WHERE `time` = '
-        ".mysql_real_escape_string($latest)."' AND (NOT `userid` = '1') ORDER BY `points` DESC", self::$dblink);
+        ".mysql_real_escape_string($latest)."' AND `siteid` = ".Config::$siteid." AND (NOT `userid` = '1') ORDER BY `points` DESC", self::$dblink);
 
 
     if($result) {
@@ -549,7 +550,7 @@ class DbWrapper {
   public static function getScoreHistory($datetime) {
     if($datetime instanceof DateTime) {
       $result = mysql_query("SELECT `userid`, `points` FROM `score` WHERE `time` = '
-        ".mysql_real_escape_string($datetime->format("Y-m-d H:i:s"))."' AND (NOT `userid` = '1') ORDER BY `points` DESC", self::$dblink);
+        ".mysql_real_escape_string($datetime->format("Y-m-d H:i:s"))."' AND `siteid` = ".Config::$siteid." AND (NOT `userid` = '1') ORDER BY `points` DESC", self::$dblink);
 
       if($result) {
         while($arr = mysql_fetch_array($result, MYSQL_ASSOC)) {

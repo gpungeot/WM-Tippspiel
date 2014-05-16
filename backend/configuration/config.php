@@ -5,5 +5,6 @@ class Config {
 	public static $mysql_user = "root";
 	public static $mysql_password = "";
 	public static $database_name = "worldcupbets";
+	public static $siteid = 0;
 }
 ?>
