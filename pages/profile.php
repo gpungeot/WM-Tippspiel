@@ -13,7 +13,7 @@ print("<span class=\"points\">Nombre de points : ".DbWrapper::getUserPoints($use
 if(!DbWrapper::isPayingUser($userid)) {
 	print("<div class=\"message\" style=\"margin-left: 35px; background-color: #FFFF9B;\">");
 	print("<form action=\"".Config::$absolute_url_path."/backend/logic/payingUser.php\" method=\"post\">");
-	print("<p>Si tu as le démon du jeu, donne 5€ à Guillaume P pour participer au challenge payant. Saisis ton mot de passe ci-dessous pour le confirmer.</p>");
+	print("<p>Si tu as le démon du jeu, donne 5€ à Guillaume P ou Vincent M pour participer au challenge payant. Saisis ton mot de passe ci-dessous pour le confirmer.</p>");
 	print("<input type=\"password\" name=\"password\" size=\"20\" maxlength=\"64\">");
 	print("<input type=\"submit\" value=\"J'ai le vice chevillé au corps, je paie !\">");
 	print("</form></div>");
