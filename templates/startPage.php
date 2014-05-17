@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link type="text/css" rel="stylesheet"
 	href="<?php print(Config::$absolute_url_path);?>templates/layout/style.css" />
-<title>Pronostics coupe du monde 2014 - CanalTP</title>
+<title>Pronostics coupe du monde 2014</title>
 </head>
 <body>
 <?php

@@ -6,7 +6,7 @@ Common::startPage();
 <h1>Règles du jeu</h1>
 <div class="text">
 <h3>Participation</h3>
-<p>Cette compétition est réservée à CanalTP (prestataires inclus bien sûr). Tout le monde peut s'inscrire mais tous les comptes doivent être validés donc pas la peine d'inscrire quelqu'un de l'extérieur, il serait refusé.</p>
+<p>Cette compétition est privée sur invitation. Tout le monde peut s'inscrire mais tous les comptes doivent être validés donc pas la peine d'inscrire quelqu'un que l'organisateur ne connaît pas, il serait refusé.</p>
 <h3>Pronostics</h3>
 <p>Les points suivants sont pronosticables :
 
@@ -63,13 +63,7 @@ Il est donc possible de gagner 6 points au maximum par poule.</p>
 <p>Trouver <b>l'équipe championne du monde</b> rapporte 5 points.</p>
 <h3>Prix</h3>
 <p>
-<ul>
-	<li>Au 1er : 50% des sommes misées</li>
-	<li>Au 2eme : 30% des sommes misées</li>
-	<li>Au 3eme : 20% des sommes misées</li>
-</ul>
-Il est bien sûr entendu que les mises seront enregistrées et que seul un joueur qui a <b>participé à la compétition payante et qui a effectivement payé avant le début de celle-ci </b>peut revendiquer un prix.
-</p>
+L'admiration de tout le monde.</p>
 </div>
 <br style="clear: both">
 <?php
