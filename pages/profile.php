@@ -10,19 +10,21 @@ DbWrapper::connectToDatabase();
 $userid = Common::$user->getUserId();
 print("<span class=\"points\">Nombre de points : ".DbWrapper::getUserPoints($userid)."</span>");
 
-if(!DbWrapper::isPayingUser($userid)) {
-	print("<div class=\"message\" style=\"margin-left: 35px; background-color: #FFFF9B;\">");
-	print("<form action=\"".Config::$absolute_url_path."/backend/logic/payingUser.php\" method=\"post\">");
-	print("<p>Si tu as le démon du jeu, donne 5€ à Guillaume P ou Vincent M pour participer au challenge payant. Saisis ton mot de passe ci-dessous pour le confirmer.</p>");
-	print("<input type=\"password\" name=\"password\" size=\"20\" maxlength=\"64\">");
-	print("<input type=\"submit\" value=\"J'ai le vice chevillé au corps, je paie !\">");
-	print("</form></div>");
+$now = new DateTime();
+$now->modify("+2 hours");
+if(Time::getPrelimStart()>$now) {
+    if(!DbWrapper::isPayingUser($userid)) {
+    	print("<div class=\"message\" style=\"margin-left: 35px; background-color: #FFFF9B;\">");
+    	print("<form action=\"".Config::$absolute_url_path."/backend/logic/payingUser.php\" method=\"post\">");
+    	print("<p>Si tu as le démon du jeu, donne 5€ à Guillaume P ou Vincent M pour participer au challenge payant. Saisis ton mot de passe ci-dessous pour le confirmer.</p>");
+    	print("<input type=\"password\" name=\"password\" size=\"20\" maxlength=\"64\">");
+    	print("<input type=\"submit\" value=\"J'ai le vice chevillé au corps, je paie !\">");
+    	print("</form></div>");
+    }
 }
 
 print("<form action=\"".Config::$absolute_url_path."/backend/logic/updateBets.php\" method=\"post\">");
 print("<input type=\"hidden\" name=\"userid\" value=\"".$userid."\">");
-$now = new DateTime();
-$now->modify("+2 hours");
 $types = array("A"=>"Groupe A", "B"=>"Groupe B", "C"=>"Groupe C", "D"=>"Groupe D", "E"=>"Groupe E", "F"=>"Groupe F",
 				"G"=>"Groupe G", "H"=>"Groupe H", "8Fin"=>"1/8 finale", "4Fin"=>"1/4 finale", "2Fin"=>"1/2 finale",
 				"3Fin"=>"3e place", "1Fin"=>"Finale");
