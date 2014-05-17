@@ -38,7 +38,7 @@ class DbWrapper {
     $result = mysql_query("SELECT * FROM `users` WHERE `id` = '".mysql_real_escape_string($id)."'".($siteid < 0 ? "" : " AND (`siteid` = ".$siteid." OR `email` = 'Admin')"), self::$dblink);
     if($result) {
       $arr = mysql_fetch_array($result);
-      return new User($arr["id"],  $arr["name"], $arr["surname"], $arr["password"], $arr["email"], $arr["cupwinner"]);
+      return new User($arr["id"],  $arr["name"], $arr["surname"], $arr["password"], $arr["email"], $arr["siteid"], $arr["cupwinner"]);
     }
     else return NULL;
   }
@@ -57,7 +57,7 @@ class DbWrapper {
       $arr = mysql_fetch_array($result, MYSQL_ASSOC);
       if(!isset($arr["id"]))
          return false;
-      return new User($arr["id"],  $arr["name"], $arr["surname"], $arr["password"], $arr["email"], $arr["cupwinner"]);
+      return new User($arr["id"],  $arr["name"], $arr["surname"], $arr["password"], $arr["email"], $arr["siteid"], $arr["cupwinner"]);
     }
     else return false;
   }
@@ -97,7 +97,7 @@ class DbWrapper {
       while($arr = mysql_fetch_array($result, MYSQL_ASSOC))
       {
         if(isset($arr["id"]))
-        $users[] =  new User($arr["id"], $arr["name"], $arr["surname"], $arr["password"], $arr["email"], $arr["cupwinner"]);
+        $users[] =  new User($arr["id"], $arr["name"], $arr["surname"], $arr["password"], $arr["email"], $arr["siteid"], $arr["cupwinner"]);
       }
     }
     return $users;
