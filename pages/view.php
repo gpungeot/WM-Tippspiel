@@ -8,7 +8,7 @@ $user = DbWrapper::getUserById($userid);
 $result = DbWrapper::execute("SELECT COUNT(*) FROM `users`");
 $arr = mysql_fetch_array($result);
 $numberOfAllUsers = $arr[0];
-if(!$userid || ($user->getUserId()==NULL)) {
+if(!$userid || $user->getUserId()==NULL || Common::$user->getSiteid() != $user->getSiteid()) {
 	Common::modalMessage("Compte inconnu.", "ranking.php");
 }
 Common::startPage();
@@ -41,7 +41,7 @@ print("</div>");
 foreach($types as $type=>$typetext)
 {
 	if($bets = DbWrapper::getMatchBetsByType($userid, $type)) {
-		if(new DateTime($bets[0]->getTime()) > $now && Common::$user->getUserId() != 1 &&!Config::$view_reults_before_matches ) {
+		if(new DateTime($bets[0]->getTime()) > $now && Common::$user->getUserId() != 1 && !Config::$view_reults_before_matches ) {
 			break;
 		}
 		print("<a name=\"".$type."\">");
