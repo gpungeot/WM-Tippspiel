@@ -6,5 +6,6 @@ class Config {
 	public static $mysql_password = "";
 	public static $database_name = "worldcupbets";
 	public static $siteid = 1;
+	public static $view_reults_before_matches = true;
 }
 ?>
