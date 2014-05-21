@@ -8,7 +8,7 @@ $user = DbWrapper::getUserById($userid);
 $result = DbWrapper::execute("SELECT COUNT(*) FROM `users`");
 $arr = mysql_fetch_array($result);
 $numberOfAllUsers = $arr[0];
-if(!$userid || $user->getUserId()==NULL || Common::$user->getSiteid() != $user->getSiteid()) {
+if(!$userid || $user->getUserId()==NULL || Common::$user->getSiteid() != $user->getSiteid() && Common::$user->getUserId() != 1) {
 	Common::modalMessage("Compte inconnu.", "ranking.php");
 }
 Common::startPage();
