@@ -16,13 +16,12 @@ if(Common::isAdmin())
 	print("<a href=\"".Config::$absolute_url_path."pages/userAdmin.php\">Utilisateurs</a>");
 	print("  ::  ");
 	print("<a href=\"".Config::$absolute_url_path."pages/resultsAdmin.php\">Enregistrer des résultats</a>");
-	print("  ::  ");
-	print("<a href=\"".Config::$absolute_url_path."pages/login.php\">Login</a>");
 }
 if(Common::$user!=null) {
 	print("<a href=\"".Config::$absolute_url_path."pages/rules.php\">Règles du jeu</a>");
 	print("<a href=\"".Config::$absolute_url_path."pages/ranking.php\">Classement</a>");
 	print("<a href=\"".Config::$absolute_url_path."pages/profile.php\">Mes pronostics [<i>".Common::$user->getName()." ".Common::$user->getSurname()."</i>]</a>");
+	print("<a href=\"".Config::$absolute_url_path."pages/login.php\">Déconnexion</a>");
 }
 print("</div>");
 

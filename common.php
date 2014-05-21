@@ -22,7 +22,7 @@ class Common{
   }
   
   public static function login()
-  {    
+  {
     if(self::$user!=NULL)
       return self::$user;
     $cookie="";
@@ -37,7 +37,7 @@ class Common{
       if($user->getPassword()!=$password)
       {
         return null;
-      }    
+      }
     }
     else
     {//check for email password
@@ -52,15 +52,22 @@ class Common{
         if($user->getPassword()!=md5($_POST["password"]))
         {
           return null;
-        }  
+        }
     }
     $newCookieContent=$user->getUserId().":".$user->getPassword();
-    if(!headers_sent())    
+    if(!headers_sent())
       setcookie("TippSpiel",$newCookieContent,time()+5184000,"/");
     self::$user=$user;
     return $user;
   }
-  
+
+  public static function disconnect()
+  {
+    $cookie="";
+    setcookie("TippSpiel",$cookie,0,"/");
+    self::redirect("pages/login.php");
+  }
+
   
   public static function loginCheck()
   {

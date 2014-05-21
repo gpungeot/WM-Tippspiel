@@ -1,6 +1,8 @@
 <?php
 include_once (dirname(__FILE__)."/../common.php");
 Common::login();
+if(Common::$user!=null)
+  Common::disconnect();
 Common::startPage();
 ?>
 <form action="../backend/controller/login.php" method="post">
