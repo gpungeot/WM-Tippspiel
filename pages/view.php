@@ -41,7 +41,7 @@ print("</div>");
 foreach($types as $type=>$typetext)
 {
 	if($bets = DbWrapper::getMatchBetsByType($userid, $type)) {
-		if(new DateTime($bets[0]->getTime())>$now) {
+		if(new DateTime($bets[0]->getTime()) > $now && Common::$user->getUserId() != 1 &&!Config::$view_reults_before_matches ) {
 			break;
 		}
 		print("<a name=\"".$type."\">");
@@ -51,7 +51,7 @@ foreach($types as $type=>$typetext)
 		foreach($bets as $key=>$value)
 		{
 			$time = new DateTime($value->getTime());
-			if($time<=$now) {
+			if($time<=$now || Config::$view_reults_before_matches || Common::$user->getUserId() == 1) {
 				print("<tr>");
 				print("<td class=\"time\">".$time->format("d. M Y")."<br>".$time->format("H:i")."</td>");
 				$team1 = $value->getFirstTeam();
