@@ -20,7 +20,7 @@ Common::startPage();
 	}
 	
 	
-	$allUsers=DbWrapper::getUsers();
+	$allUsers=DbWrapper::getUsers(Config::$siteid);
 	print("<h2>Acceptés</h2>");
 	print("<table>");
 	foreach($allUsers as $user)

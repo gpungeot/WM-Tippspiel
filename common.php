@@ -33,7 +33,7 @@ class Common{
       $parts=explode(":",$cookie);
       $id=$parts[0];
       $password=$parts[1];
-      $user=DbWrapper::getUserById($id);
+      $user=DbWrapper::getUserById($id, Config::$siteid);
       if($user->getPassword()!=$password)
       {
         return null;

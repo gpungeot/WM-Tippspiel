@@ -34,8 +34,8 @@ class DbWrapper {
    * @param $id
    * @return User the user
    */
-  public static function getUserById($id) {
-    $result = mysql_query("SELECT * FROM `users` WHERE `id` = '".mysql_real_escape_string($id)."'", self::$dblink);
+  public static function getUserById($id, $siteid = -1) {
+    $result = mysql_query("SELECT * FROM `users` WHERE `id` = '".mysql_real_escape_string($id)."'".($siteid < 0 ? "" : " AND (`siteid` = ".$siteid." OR `email` = 'Admin')"), self::$dblink);
     if($result) {
       $arr = mysql_fetch_array($result);
       return new User($arr["id"],  $arr["name"], $arr["surname"], $arr["password"], $arr["email"], $arr["cupwinner"]);
@@ -75,7 +75,7 @@ class DbWrapper {
       .mysql_real_escape_string($user->getSurname())."', '"
       .mysql_real_escape_string(md5($user->getPassword()))."', '"
       .mysql_real_escape_string($user->getMailAddress())."', '0', '"
-      .Config::$siteid.")";
+      .Config::$siteid."')";
       mysql_query("INSERT INTO `users` ".$fields." VALUES ".$values, self::$dblink);
       $e=mysql_error(self::$dblink);
       if($e)
@@ -103,8 +103,8 @@ class DbWrapper {
     return $users;
   }
 
-  public static function getUsers() {
-    $result = mysql_query("SELECT * FROM `users` WHERE `siteid` = ".Config::$siteid." ORDER BY `surname` ASC", self::$dblink);
+  public static function getUsers($siteid = -1) {
+    $result = mysql_query("SELECT * FROM `users`".($siteid < 0 ? "" : " WHERE`siteid` = ".$siteid)." ORDER BY `surname` ASC", self::$dblink);
     $users=array();
     if($result) {
       while($arr = mysql_fetch_array($result, MYSQL_ASSOC))
@@ -518,7 +518,7 @@ class DbWrapper {
   }
 
   public static function getLatestScoreHistory() {
-    $t = mysql_query("SELECT `time` FROM `score` GROUP BY `time` ORDER BY `time` DESC", self::$dblink);
+    $t = mysql_query("SELECT `time` FROM `score` WHERE `siteid` = ".Config::$siteid." GROUP BY `time` ORDER BY `time` DESC", self::$dblink);
     if(mysql_num_rows($t)<=1) {
       return array();
     }
