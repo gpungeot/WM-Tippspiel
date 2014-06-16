@@ -10,6 +10,7 @@ $userid = $_POST["userid"];
 $type = isset($_POST["ALL"]) ? $_POST["ALL"] : "";
 $groupBet = false;
 $now = new DateTime();
+$now->modify("+2 hours");
 $messages="";
 if(isset($_POST["winner"])) {
   if($_POST["worldcupwinner"]!="") {

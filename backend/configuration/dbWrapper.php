@@ -134,7 +134,8 @@ class DbWrapper {
       $values = "('"
       .mysql_real_escape_string($team->getTeamId())."', '"
       .mysql_real_escape_string($team->getName())."', '"
-      .mysql_real_escape_string($team->getGroup())."', '1')";
+      .mysql_real_escape_string($team->getGroup())."', '"
+      .mysql_real_escape_string($team->getPosition())."')";
       //print("INSERT INTO `teams` ".$fields." VALUES ".$values);
       mysql_query("INSERT INTO `teams` ".$fields." VALUES ".$values, self::$dblink);
       $e=mysql_error(self::$dblink);
@@ -194,6 +195,19 @@ class DbWrapper {
     $result = mysql_query("SELECT `name` FROM `teams` WHERE `id` = '".mysql_real_escape_string($teamid)."'", self::$dblink);
     $arr = mysql_fetch_array($result, MYSQL_ASSOC);
     return $arr["name"];
+  }
+
+  public static function getTeamPositionById($teamid) {
+    $result = mysql_query("SELECT `position` FROM `teams` WHERE `id` = '".mysql_real_escape_string($teamid)."'", self::$dblink);
+    $arr = mysql_fetch_array($result, MYSQL_ASSOC);
+    return $arr["position"][0];
+  }
+
+  public static function updateTeamPositionById($teamid, $pos) {
+    $result = mysql_query("UPDATE `teams` SET `position`='".mysql_real_escape_string($pos)."' WHERE `id` = '".mysql_real_escape_string($teamid)."'", self::$dblink);
+    $e=mysql_error(self::$dblink);
+    if($e)
+      print("MySQLError: ".$e);
   }
 
   /**
@@ -539,9 +553,10 @@ class DbWrapper {
         }
       }
       else return array();
-      return $points;
+      if(isset($points))
+        return $points;
     }
-    else return array();
+    return array();
   }
 
   /**
@@ -560,7 +575,7 @@ class DbWrapper {
       }
     }
     else return array();
-    return $history;
+    return isset($history) ? $history : array();
   }
 
   public static function setHistoryRank($datetime, $userid, $rank) {

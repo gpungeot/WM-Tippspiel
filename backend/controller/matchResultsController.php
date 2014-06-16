@@ -31,30 +31,46 @@ $historyDates = array("2010-06-13 00:00:00",
         "2014-07-14 10:00:00",
         );
 $now = new DateTime();
+$now->modify("+2 hours");
 
 foreach($types as $key=>$value) {
-  if($_POST["matchbet_".$value]) {
+  if(isset($_POST["matchbet_".$value])) {
     $type = $value;
     $matches=DbWrapper::getMatchesByType($type);
     foreach($matches as $match)
     {
       $gameId=$match->getGameId();
-      $score1=$_POST[$gameId."a"];
-      $score2=$_POST[$gameId."b"];
-      $score1e=$_POST[$gameId."a2"];
-      $score2e=$_POST[$gameId."b2"];
-      
-      $team1 = $_POST[$gameId."team1"];
-      $team2 = $_POST[$gameId."team2"];
+      $score1 = isset($_POST[$gameId."a"]) ? $_POST[$gameId."a"] : '';
+      $score2 = isset($_POST[$gameId."b"]) ? $_POST[$gameId."b"] : '';
+      $score1e = isset($_POST[$gameId."a2"]) ? $_POST[$gameId."a2"] : '';
+      $score2e = isset($_POST[$gameId."b2"]) ? $_POST[$gameId."b2"] : '';
+
+      $team1 = isset($_POST[$gameId."team1"]) ? $_POST[$gameId."team1"] : '';
+      $team2 = isset($_POST[$gameId."team2"]) ? $_POST[$gameId."team2"] : '';
 
       if(($score1=="")||($score2==""))
         DbWrapper::setGameResult($gameId,-1,-1);
       else
         DbWrapper::setGameResult($gameId,$score1,$score2,$score1e,$score2e);
         
-      if($team1 != '0' || $team2 != '0')
+      if($team1 != '' || $team2 != '')
         DbWrapper::setGameTeams($gameId,$team1, $team2);
     }
+  }
+  if(isset($_POST["group_".$value]))
+  {
+      $groupTeams = DbWrapper::getTeamIDsByGroup($value);
+      for ($i=0; $i<sizeof($groupTeams); $i++)
+      {
+        if(isset($_POST[$groupTeams[$i]."pos"]))
+        {
+          if($_POST[$groupTeams[$i]."pos"] == "")
+            $pos = -1;
+          else
+            $pos = $_POST[$groupTeams[$i]."pos"];
+          DbWrapper::updateTeamPositionById($groupTeams[$i], $pos);
+        }
+      }
   }
 }
 
@@ -70,6 +86,8 @@ foreach($users as $user)
 {
   $userid=$user->getUserId();
   $userPoints=0;
+  $groupPoints[$userid] = 0;
+  $winnerPoints[$userid] = 0;
   $historyCount = 0;
   if(!$user->isAccepted())
     continue;
@@ -120,7 +138,7 @@ foreach($users as $user)
         $userPoints+=1;
         //print("Goals OK ");
       }
-      //print($game->getFirstTeamGoals()." : ".$game->getSecondTeamGoals()."  getippt: ".$userMatch["goals1"]." : ".$userMatch["goals2"]." punkte: ".$userPoints."<br>");
+      print($user->getName()." - ".$game->getFirstTeamGoals()." : ".$game->getSecondTeamGoals()."  getippt: ".$userMatch["goals1"]." : ".$userMatch["goals2"]." punkte: ".$userPoints."<br>");
     }
   }
 
@@ -159,6 +177,7 @@ foreach($users as $user)
         $correctGroupWinner++;
 
     }
+
     if($correctGroupWinner==2)
     {
       $pointsForThisGroup++;
@@ -211,7 +230,6 @@ foreach($historyDates as $value) {
     $j++;
   }
 }
-
 
 Common::redirect("pages/resultsAdmin.php");
 

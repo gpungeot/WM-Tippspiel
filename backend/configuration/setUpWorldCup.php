@@ -3,46 +3,46 @@ include_once('../../common.php');
 print(DbWrapper::connectToDatabase());
 
 function setUpTeams() {
-	DbWrapper::addTeam(new Team("0", "#", "0", "0"));
-	DbWrapper::addTeam(new Team("1", "Brésil", "A", "1"));
-	DbWrapper::addTeam(new Team("2", "Croatie", "A", "-1"));
-	DbWrapper::addTeam(new Team("3", "Mexique", "A", "-1"));
-	DbWrapper::addTeam(new Team("4", "Cameroun", "A", "-1"));
+	DbWrapper::addTeam(new Team("0", "#", "0", "5"));
+	DbWrapper::addTeam(new Team("1", "Brésil", "A", "5"));
+	DbWrapper::addTeam(new Team("2", "Croatie", "A", "5"));
+	DbWrapper::addTeam(new Team("3", "Mexique", "A", "5"));
+	DbWrapper::addTeam(new Team("4", "Cameroun", "A", "5"));
 
-	DbWrapper::addTeam(new Team("5", "Espagne", "B", "-1"));
-	DbWrapper::addTeam(new Team("6", "Pays Bas", "B", "-1"));
-	DbWrapper::addTeam(new Team("7", "Chili", "B", "-1"));
-	DbWrapper::addTeam(new Team("8", "Australie", "B", "-1"));
+	DbWrapper::addTeam(new Team("5", "Espagne", "B", "5"));
+	DbWrapper::addTeam(new Team("6", "Pays Bas", "B", "5"));
+	DbWrapper::addTeam(new Team("7", "Chili", "B", "5"));
+	DbWrapper::addTeam(new Team("8", "Australie", "B", "5"));
 
-	DbWrapper::addTeam(new Team("9", "Colombie", "C", "-1"));
-	DbWrapper::addTeam(new Team("10", "Grèce", "C", "-1"));
-	DbWrapper::addTeam(new Team("11", "Côte d'ivoire", "C", "-1"));
-	DbWrapper::addTeam(new Team("12", "Japon", "C", "-1"));
+	DbWrapper::addTeam(new Team("9", "Colombie", "C", "5"));
+	DbWrapper::addTeam(new Team("10", "Grèce", "C", "5"));
+	DbWrapper::addTeam(new Team("11", "Côte d'ivoire", "C", "5"));
+	DbWrapper::addTeam(new Team("12", "Japon", "C", "5"));
 
-	DbWrapper::addTeam(new Team("13", "Uruguay", "D", "-1"));
-	DbWrapper::addTeam(new Team("14", "Costa Rica", "D", "-1"));
-	DbWrapper::addTeam(new Team("15", "Angleterre", "D", "-1"));
-	DbWrapper::addTeam(new Team("16", "Italie", "D", "-1"));
+	DbWrapper::addTeam(new Team("13", "Uruguay", "D", "5"));
+	DbWrapper::addTeam(new Team("14", "Costa Rica", "D", "5"));
+	DbWrapper::addTeam(new Team("15", "Angleterre", "D", "5"));
+	DbWrapper::addTeam(new Team("16", "Italie", "D", "5"));
 
-	DbWrapper::addTeam(new Team("17", "Suisse", "E", "-1"));
-	DbWrapper::addTeam(new Team("18", "Equateur", "E", "-1"));
-	DbWrapper::addTeam(new Team("19", "France", "E", "-1"));
-	DbWrapper::addTeam(new Team("20", "Honduras", "E", "-1"));
+	DbWrapper::addTeam(new Team("17", "Suisse", "E", "5"));
+	DbWrapper::addTeam(new Team("18", "Equateur", "E", "5"));
+	DbWrapper::addTeam(new Team("19", "France", "E", "5"));
+	DbWrapper::addTeam(new Team("20", "Honduras", "E", "5"));
 
-	DbWrapper::addTeam(new Team("21", "Argentine", "F", "-1"));
-	DbWrapper::addTeam(new Team("22", "Bosnie", "F", "-1"));
-	DbWrapper::addTeam(new Team("23", "Iran", "F", "-1"));
-	DbWrapper::addTeam(new Team("24", "Nigeria", "F", "-1"));
+	DbWrapper::addTeam(new Team("21", "Argentine", "F", "5"));
+	DbWrapper::addTeam(new Team("22", "Bosnie", "F", "5"));
+	DbWrapper::addTeam(new Team("23", "Iran", "F", "5"));
+	DbWrapper::addTeam(new Team("24", "Nigeria", "F", "5"));
 
-	DbWrapper::addTeam(new Team("25", "Allemagne", "G", "-1"));
-	DbWrapper::addTeam(new Team("26", "Portugal", "G", "-1"));
-	DbWrapper::addTeam(new Team("27", "Ghana", "G", "-1"));
-	DbWrapper::addTeam(new Team("28", "Etats-Unis", "G", "-1"));
+	DbWrapper::addTeam(new Team("25", "Allemagne", "G", "5"));
+	DbWrapper::addTeam(new Team("26", "Portugal", "G", "5"));
+	DbWrapper::addTeam(new Team("27", "Ghana", "G", "5"));
+	DbWrapper::addTeam(new Team("28", "Etats-Unis", "G", "5"));
 
-	DbWrapper::addTeam(new Team("29", "Belgique", "H", "-1"));
-	DbWrapper::addTeam(new Team("30", "Algérie", "H", "-1"));
-	DbWrapper::addTeam(new Team("31", "Russie", "H", "-1"));
-	DbWrapper::addTeam(new Team("32", "Corée du Sud", "H", "-1"));
+	DbWrapper::addTeam(new Team("29", "Belgique", "H", "5"));
+	DbWrapper::addTeam(new Team("30", "Algérie", "H", "5"));
+	DbWrapper::addTeam(new Team("31", "Russie", "H", "5"));
+	DbWrapper::addTeam(new Team("32", "Corée du Sud", "H", "5"));
 	print("Teams: OK<br>");
 }
 

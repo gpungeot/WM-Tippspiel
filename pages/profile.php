@@ -22,6 +22,7 @@ if(!DbWrapper::isPayingUser($userid)) {
 print("<form action=\"".Config::$absolute_url_path."/backend/logic/updateBets.php\" method=\"post\">");
 print("<input type=\"hidden\" name=\"userid\" value=\"".$userid."\">");
 $now = new DateTime();
+$now->modify("+2 hours");
 $types = array("A"=>"Groupe A", "B"=>"Groupe B", "C"=>"Groupe C", "D"=>"Groupe D", "E"=>"Groupe E", "F"=>"Groupe F",
 				"G"=>"Groupe G", "H"=>"Groupe H", "8Fin"=>"1/8 finale", "4Fin"=>"1/4 finale", "2Fin"=>"1/2 finale",
 				"3Fin"=>"3e place", "1Fin"=>"Finale");

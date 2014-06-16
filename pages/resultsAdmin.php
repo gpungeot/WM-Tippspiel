@@ -25,6 +25,7 @@ foreach($types as $type=>$typetext)
 {
   $matches = DbWrapper::getMatchesByType( $type);
   if($matches) {
+		print("<table><tr><td>");
     print("<table class=\"matchbets\">");
     print("<tr><td class=\"title\" colspan=6><h3>".$typetext."</h3></td></tr>");
     foreach($matches as $key=>$value)
@@ -174,10 +175,40 @@ foreach($types as $type=>$typetext)
     print("<input type=\"submit\" value=\"Enregistrer\" name=\"matchbet_".$type."\">");
     print("</h3></td></tr>");
     print("</table>");
-
-    
-    
+    print("</td><td>");
   }
+
+    if($type >= 'A')
+    {
+        // Positions in groups
+        $groupTeams = DbWrapper::getTeamIDsByGroup($type);
+        print("<table class=\"groupBets\">");
+        if($groupTeams) {
+        	print("<tr><td class=\"title\" colspan=6><h3>Classement groupe</h3></td></tr>");
+        	foreach($groupTeams as $key=>$value) {
+        		print("<tr><td class=\"team\">");
+        		print(DbWrapper::getTeamNameById($value));
+        		print("</td>");
+        		print("<td class=\"bet\">");
+        		print("<select name=\"".$value."pos\">");
+        		print("<option");
+        		print(DbWrapper::getTeamPositionById($value)==-1?" selected":"");
+        		print("></option>");
+        		for ($i=1; $i<=sizeof($groupTeams); $i++) {
+        			print("<option");
+        			print(DbWrapper::getTeamPositionById($value)==$i?" selected":"");
+        			print(">".$i."</option>");
+        		}
+        		print("</select>");
+        		print("</td></tr>");
+        	}
+        	print("<tr><td colspan=3 class=\"savebtn\"><h3>");
+        	print("<input type=\"submit\" value=\"Enregistrer\" name=\"group_".$type."\">");
+        	print("</h3></td></tr>");
+        }
+    }
+    print("</table>");
+		print("</td></tr></table>");
 }
 print("<input type=\"submit\" value=\"Enregistrer tout\" name=\"ALL\">");
 print("</form>");
