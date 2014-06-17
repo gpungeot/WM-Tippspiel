@@ -110,7 +110,7 @@ class DbWrapper {
       while($arr = mysql_fetch_array($result, MYSQL_ASSOC))
       {
         if(isset($arr["id"]))
-        $users[] =  new User($arr["id"], $arr["name"], $arr["surname"], $arr["password"], $arr["email"], $arr["cupwinner"],$arr["accepted"]);
+        $users[] =  new User($arr["id"], $arr["name"], $arr["surname"], $arr["password"], $arr["email"], $arr["siteid"], $arr["cupwinner"],$arr["accepted"]);
       }
     }
     return $users;
@@ -131,6 +131,20 @@ class DbWrapper {
       }
     }
     return $points;
+  }
+
+  public static function getSiteids() {
+    $result = mysql_query("SELECT DISTINCT siteid FROM users", self::$dblink);
+    $e=mysql_error(self::$dblink);
+    if($e)
+      print("MySQLError: ".$e);
+    if($result) {
+      while($siteid = mysql_fetch_array($result)) {
+        $siteids[] = $siteid[0];
+      }
+    }
+    return $siteids;
+
   }
 
   public static function addTeam($team) {
@@ -499,13 +513,13 @@ class DbWrapper {
     }
   }
 
-  public static function updateScoreHistory($time, $userid, $points) {
+  public static function updateScoreHistory($time, $userid, $siteid, $points) {
     $exist = mysql_query("SELECT * FROM `score` WHERE `time` = '".mysql_real_escape_string($time)."' AND
           `userid` = '".mysql_real_escape_string($userid)."'", self::$dblink);
     if(mysql_num_rows($exist)==0) {
-      mysql_query("INSERT INTO `score` ( `time`, `userid`, `points` )
+      mysql_query("INSERT INTO `score` ( `time`, `userid`, `points`, `siteid` )
           VALUES ( '".mysql_real_escape_string($time)."', '".mysql_real_escape_string($userid)."', 
-          '".mysql_real_escape_string($points)."' )", self::$dblink);
+          '".mysql_real_escape_string($points)."', '".mysql_real_escape_string($siteid)."' )", self::$dblink);
     }
     else {
       mysql_query("UPDATE `score` SET `points`='".mysql_real_escape_string($points)."'
@@ -547,11 +561,10 @@ class DbWrapper {
     return $points;
   }
 
-  public static function getScoreHistory($datetime) {
+  public static function getScoreHistory($datetime, $siteid) {
     if($datetime instanceof DateTime) {
-      $result = mysql_query("SELECT `userid`, `points` FROM `score` WHERE `time` = '
-        ".mysql_real_escape_string($datetime->format("Y-m-d H:i:s"))."' AND `siteid` = ".Config::$siteid." AND (NOT `userid` = '1') ORDER BY `points` DESC", self::$dblink);
-
+      $result = mysql_query("SELECT `userid`, `points` FROM `score` WHERE `siteid` = ".$siteid." AND `time` = '
+        ".mysql_real_escape_string($datetime->format("Y-m-d H:i:s"))."' AND (NOT `userid` = '1') ORDER BY `points` DESC", self::$dblink);
       if($result) {
         while($arr = mysql_fetch_array($result, MYSQL_ASSOC)) {
           $points[$arr["userid"]] = $arr["points"];

@@ -112,7 +112,7 @@ foreach($users as $user)
       $historyCount++;
     }
     if(isset($historyDates[$historyCount-1]))
-      DbWrapper::updateScoreHistory($historyDates[$historyCount-1], $userid, $userPoints);
+      DbWrapper::updateScoreHistory($historyDates[$historyCount-1], $userid, $user->getSiteid(), $userPoints);
 
     if(($game->getFirstTeamGoals()!=-1)&&($game->getSecondTeamGoals()!=-1)) {
       $gameTendency=0;
@@ -194,43 +194,35 @@ foreach($users as $user)
   }
 
   if(isset($historyDates[$historyCount-1]))
-    DbWrapper::updateScoreHistory($historyDates[$historyCount-1], $userid, $userPoints);
+    DbWrapper::updateScoreHistory($historyDates[$historyCount-1], $userid, $user->getSiteid(), $userPoints);
     
   DbWrapper::updateUserPoints($userid,$userPoints);
 }
 
 // compute history ranks
+$siteids = DbWrapper::getSiteids();;
 foreach($historyDates as $value) {
   $time = new DateTime($value);
-  $userHistory = DbWrapper::getScoreHistory($time);
-  
-  if($time >= Time::getPrelimEnd()) {
-    foreach($userHistory as $userid=>$points) {
-      $userHistory[$userid] = $points + $groupPoints[$userid];
-    }
-  }
-  if($time >= Time::getWorldCupEnd()) {
-    foreach($userHistory as $userid=>$points) {
-      $userHistory[$userid] = $points + $winnerPoints[$userid];
-    }
-  }
-  
-  // associative sorting in reverse order
-  arsort($userHistory);
-  
-  $i = 1; //increments when score differs
-  $j = 1; //increments always
-  $oldscore = -1;
-  foreach($userHistory as $userid=>$points) {
-    if($oldscore != $points) {
-      $i = $j;
-      $oldscore = $points;
-    }
-    DbWrapper::setHistoryRank($time, $userid, $i);
-    $j++;
+  foreach($siteids as $siteid)
+  {
+      $userHistory = DbWrapper::getScoreHistory($time, $siteid);
+
+      // associative sorting in reverse order
+      arsort($userHistory);
+
+      $i = 1; //increments when score differs
+      $j = 1; //increments always
+      $oldscore = -1;
+      foreach($userHistory as $userid=>$points) {
+        if($oldscore != $points) {
+          $i = $j;
+          $oldscore = $points;
+        }
+        DbWrapper::setHistoryRank($time, $userid, $i);
+        $j++;
+      }
   }
 }
-
 Common::redirect("pages/resultsAdmin.php");
 
 ?>

@@ -8,7 +8,8 @@ class User {
 	private $email;
 	private $cupwinner;
 	private $accepted;
-	
+	private $siteid;
+
 
 	public function getUserId() {
 		return $this->userid;
@@ -37,8 +38,12 @@ class User {
 	public function isAccepted() {
 		return $this->accepted>0;
 	}
-	
-	public function __construct($userid, $name, $surname, $password, $email, $cupwinner=0,$accepted = 1) {
+
+	public function getSiteid() {
+		return $this->siteid;
+	}
+
+	public function __construct($userid, $name, $surname, $password, $email,$siteid, $cupwinner=0,$accepted = 1) {
 		$this->userid = $userid;		
 		$this->name = $name;
 		$this->surname = $surname;
@@ -46,6 +51,7 @@ class User {
 		$this->email = $email;
 		$this->cupwinner = $cupwinner;
 		$this->accepted = $accepted;
+		$this->siteid = $siteid;
 	}
 }
 ?>
