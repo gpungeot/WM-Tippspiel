@@ -2,14 +2,16 @@
 include_once (dirname(__FILE__)."/../../common.php");
 Common::loginCheck();
 
-$types = array("A","B","C","D","E","F","G","H","8Fin","4Fin","2Fin","3Fin","1Fin");
+//$types = array("A","B","C","D","E","F","G","H","8Fin","4Fin","2Fin","3Fin","1Fin");
+$types = array("A"=>"Groupe A", "B"=>"Groupe B", "C"=>"Groupe C", "D"=>"Groupe D", "E"=>"Groupe E", "F"=>"Groupe F",
+				"G"=>"Groupe G", "H"=>"Groupe H", "8Fin"=>"1/8 finale", "4Fin"=>"1/4 finale", "2Fin"=>"1/2 finale",
+				"3Fin"=>"3e place", "1Fin"=>"Finale");
 $userid = $_POST["userid"];
-$type = $_POST["ALL"];
+$type = isset($_POST["ALL"]) ? $_POST["ALL"] : "";
 $groupBet = false;
 $now = new DateTime();
 $messages="";
-if($_POST["winner"]) {
-  $type = $value;
+if(isset($_POST["winner"])) {
   if($_POST["worldcupwinner"]!="") {
     $messages="Champions du monde enregistrés. ";
     updateWinner();
@@ -18,14 +20,14 @@ if($_POST["winner"]) {
 if(!$type)
 {
   foreach($types as $key=>$value) {
-    if($_POST["matchbet_".$value]) {
-      $type = $value;
+    if(isset($_POST["matchbet_".$key])) {
+      $type = $key;
       $messages="Pronostics pour ".$value." enregistrés. ";
       break;
     }
-    if($_POST["group_".$value]) {
-      $type = $value;
-      $messages="Classement pour ".$value." enregistrés. ";
+    if(isset($_POST["group_".$key])) {
+      $type = $key;
+      $messages="Classement pour ".$value.". ";
       $groupBet = true;
     }
   }
@@ -42,7 +44,7 @@ else {
     updateWinner();
   }
   foreach($types as $key=>$value) {
-    $type = $value;
+    $type = $key;
     updateMatchBets();
     if(new DateTime($_POST[$type."firsttime"])>=$now) {
       updateGroupBets();
@@ -71,7 +73,7 @@ function updateMatchBets() {
         }
       }
       else
-      if($_POST[$value."a"])
+      if(isset($_POST[$value."a"]))
         $messages.="Un des matches au moins à ".$time->format("H:i")." a commencé. ";
     }
   }
@@ -79,13 +81,14 @@ function updateMatchBets() {
 
 function updateGroupBets() {
   global $now, $type, $userid, $messages;
+  $set = Array();
   if($teams = DbWrapper::getTeamIDsByGroup($type))
   {
     //check for collisions
     $collision = false;
     foreach ($teams as $key=>$value) {
-      if($_POST[$value."pos"]!="") {
-        if($set[$_POST[$value."pos"]] == true) {
+      if(isset($_POST[$value."pos"])) {
+        if(isset($set[$_POST[$value."pos"]])) {
           $collision = true;
           break;
         }
@@ -100,6 +103,7 @@ function updateGroupBets() {
         $bets[$value] = $_POST[$value."pos"];
       }
       DbWrapper::updateGroupBets($userid, $bets);
+      $messages.="Enregistré.";
     } else {
       $messages.="Position en double. Non enregistré.";
     }

@@ -27,8 +27,8 @@ if(Common::$user!=null) {
 print("</div>");
 
 ?>
-<div id="logo"><img alt="South Africa 2010"
-	src="<?php print(Config::$absolute_url_path);?>templates/layout/logo.jpg"><br>
-<img alt="Football players" style="margin-top: 180px;"
-	src="<?php print(Config::$absolute_url_path);?>templates/layout/kickers.png">
+<div id="logo"><a href="<?php print(Config::$absolute_url_path);?>"><img alt="South Africa 2010"
+	src="<?php print(Config::$absolute_url_path);?>templates/layout/logo.jpg"></a><br>
+<!--img alt="Football players" style="margin-top: 180px;"
+	src="<?php print(Config::$absolute_url_path);?>templates/layout/brasil.jpg"-->
 </div>

@@ -8,10 +8,10 @@ DbWrapper::connectToDatabase();
 <h1>Pronostics</h1>
 <?php
 $userid = Common::$user->getUserId();
-print("<span class=\"points\">Nombre de points : ".DbWrapper::getUserPoints($userid)."</span>");
+//print("<span class=\"points\">Nombre de points : ".DbWrapper::getUserPoints($userid)."</span>");
 
 if(!DbWrapper::isPayingUser($userid)) {
-	print("<div class=\"message\" style=\"margin-left: 60px; background-color: #FFFF9B;\">");
+	print("<div class=\"message\" style=\"margin-left: 35px; background-color: #FFFF9B;\">");
 	print("<form action=\"".Config::$absolute_url_path."/backend/logic/payingUser.php\" method=\"post\">");
 	print("<p>Si tu as le démon du jeu, donne 5€ à Guillaume P pour participer au challenge payant. Saisis ton mot de passe ci-dessous pour le confirmer.</p>");
 	print("<input type=\"password\" name=\"password\" size=\"20\" maxlength=\"64\">");
@@ -72,7 +72,7 @@ foreach($types as $type=>$typetext)
 			$team1 = $value->getFirstTeam();
 			print("<td class=\"team\" style=\"text-align: right;\">");
 			print($team1=="#"?"<i>Pas encore connu</i></td>":$team1."</td>");
-			print("<td> : </td>");
+			print("<td> - </td>");
 			$team2 = $value->getSecondTeam();
 			print("<td class=\"team\">");
 			print($team2=="#"?"<i>Pas encore connu</i></td>":$team2."</td>");
@@ -116,7 +116,7 @@ foreach($types as $type=>$typetext)
 					print(">".$i."</option>");
 				}
 				print("</select>");
-				print(" : ");
+				print(" - ");
 				print("<select name=\"".$value->getGameId()."b\" size=1>");
 				print("<option");
 				print($score==null?" selected":"");
@@ -131,17 +131,17 @@ foreach($types as $type=>$typetext)
 			} else {
 				print("<td class=\"bet $pointsClass\">");
 				print($score==null?"&nbsp;&nbsp;":$bet1);
-				print(" : ");
+				print(" - ");
 				print($score==null?"&nbsp;&nbsp;":$bet2);
 				if($pointsClass!="")
 					print("<span class=\"smallpoints\">$points</span>");
 				print("</td>");
 			}
 			if(($value->getResult()->getFirstTeamGoals()!=-1) && ($value->getResult()->getSecondTeamGoals()!=-1)) {
-				print("<td>".$value->getResult()->getFirstTeamGoals()." : ".$value->getResult()->getSecondTeamGoals()."</td>");
+				print("<td>".$value->getResult()->getFirstTeamGoals()." - ".$value->getResult()->getSecondTeamGoals()."</td>");
 				if($value->hasDifferentEndScore())
 				{
-					print("<td>(".$value->getEndResult()->getFirstTeamGoals()." : ".$value->getEndResult()->getSecondTeamGoals().")</td>");
+					print("<td>(".$value->getEndResult()->getFirstTeamGoals()." - ".$value->getEndResult()->getSecondTeamGoals().")</td>");
 				}				
 			}
 			
@@ -157,7 +157,7 @@ foreach($types as $type=>$typetext)
 		$groupCorrect=0;
 		print("<table class=\"groupBets\">");
 		if($teams) {
-			print("<tr><td class=\"title\" colspan=6><h3>Positionierung</h3></td></tr>");
+			print("<tr><td class=\"title\" colspan=6><h3>Classement groupe</h3></td></tr>");
 			if(new DateTime($bets[0]->getTime())>$now) {
 				foreach($teams as $key=>$value) {
 					print("<tr><td class=\"team\">");

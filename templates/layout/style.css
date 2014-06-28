@@ -11,14 +11,14 @@ body a{
 }
 
 h1{
-	font-family: georgia, cambria, serif;
+	#font-family: georgia, cambria, serif;
 }
 
 div#logo {
 	position: fixed;
 	width: 200px;
 	left: 740px;
-	top: 100px;
+	top: 6px;
 	float: right;
 }
 
@@ -27,6 +27,7 @@ input#saveAll {
 	left: 780px;
 	top: 260px;
 	height: 40px;
+	display: none;
 }
 
 .menu {
@@ -49,7 +50,7 @@ div#page {
 	background-color: white;
 	width: 920px;
 	padding: 20px;
-	padding-bottom: 140px;
+	padding-bottom: 223px;
 }
 
 .points {
@@ -62,6 +63,7 @@ div#worldcupwinner {
 	font-size: 18px;
 	font-weight: bold;
 	margin-top: 30px;
+	margin-left: 35px;
 }
 
 div#worldcupwinner select{
@@ -201,7 +203,7 @@ div.text{
 }
 
 div.message{
-	width:400px;
+	width:575px;
 	background-color:#E9F8FC;
 	border:2px solid black;
 	padding:6px;

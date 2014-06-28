@@ -3,11 +3,11 @@ include_once (dirname(__FILE__)."/../common.php");
 Common::login();
 
 Common::startPage();
-$name = $_GET["name"];
-$surname = $_GET["surname"];
-$mail = $_GET["mail"];
+$name = isset($_GET["name"]) ? $_GET["name"] : "";
+$surname = isset($_GET["surname"]) ? $_GET["surname"] : "";
+$mail = isset($_GET["mail"]) ? $_GET["mail"] : "";
 ?>
-<h1>Anmeldung</h1>
+<h1>Inscription</h1>
 <form name="Registration"
 	action="<?php print(Config::$absolute_url_path)?>backend/logic/validateRegistration.php"
 	method="post"> 

@@ -18,7 +18,6 @@ $ranks = "";
 foreach($history as $value) {
 	$ranks .= $value[2].",";
 }
-print("<p>Verlauf:<br><img src=\"".Config::$absolute_url_path."pages/chartFactory.php?ranks=".$ranks."&max=".$numberOfAllUsers."\" style=\"border: 2px solid lightgray;\"></p>");
 print("<span class=\"points\">Nombre de points : ".DbWrapper::getUserPoints($userid)."</span>");
 
 $now = new DateTime();
@@ -52,7 +51,7 @@ foreach($types as $type=>$typetext)
 				$team1 = $value->getFirstTeam();
 				print("<td class=\"team\" style=\"text-align: right;\">");
 				print($team1=="#"?"<i>Pas encore connu</i></td>":$team1."</td>");
-				print("<td> : </td>");
+				print("<td> - </td>");
 				$team2 = $value->getSecondTeam();
 				print("<td class=\"team\">");
 				print($team2=="#"?"<i>Pas encore connu</i></td>":$team2."</td>");
@@ -87,16 +86,16 @@ foreach($types as $type=>$typetext)
 				}
 				print("<td class=\"viewbet $pointsClass\">");
 				print($score==null?"&nbsp;&nbsp;":$bet1);
-				print(" : ");
+				print(" - ");
 				print($score==null?"&nbsp;&nbsp;":$bet2);
 				if($pointsClass!="")
 					print("<span class=\"smallpoints\">$points</span>");
 				print("</td>");
 				if(($value->getResult()->getFirstTeamGoals()!=-1) && ($value->getResult()->getSecondTeamGoals()!=-1)) {
-					print("<td>".$value->getResult()->getFirstTeamGoals()." : ".$value->getResult()->getSecondTeamGoals()."</td>");
+					print("<td>".$value->getResult()->getFirstTeamGoals()." - ".$value->getResult()->getSecondTeamGoals()."</td>");
 					if($value->hasDifferentEndScore())
 					{
-						print("<td>(".$value->getEndResult()->getFirstTeamGoals()." : ".$value->getEndResult()->getSecondTeamGoals().")</td>");
+						print("<td>(".$value->getEndResult()->getFirstTeamGoals()." - ".$value->getEndResult()->getSecondTeamGoals().")</td>");
 					}	
 				}
 			}
@@ -108,7 +107,7 @@ foreach($types as $type=>$typetext)
 		$teams = DbWrapper::getTeamBetsByGroup($userid, $type);
 		print("<table class=\"groupBets\">");
 		if($teams) {
-			print("<tr><td class=\"title\" colspan=6><h3>Positionierung</h3></td></tr>");
+			print("<tr><td class=\"title\" colspan=6><h3>Classement groupe</h3></td></tr>");
 			foreach($teams as $key=>$value) {
 				print("<tr><td class=\"team\">");
 				print($value->getTeamName());

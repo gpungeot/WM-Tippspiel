@@ -56,7 +56,7 @@ class Common{
     }
     $newCookieContent=$user->getUserId().":".$user->getPassword();
     if(!headers_sent())    
-      setcookie("TippSpiel",$newCookieContent,time()+3600,"/");
+      setcookie("TippSpiel",$newCookieContent,time()+5184000,"/");
     self::$user=$user;
     return $user;
   }
@@ -108,7 +108,7 @@ class Common{
   {
     self::startPage();
     print("<div class=\"message\">");
-    print(htmlentities($message));
+    print($message);
     
     print("<a class=\"button\" href=\"".Config::$absolute_url_path."pages/".$page."\">OK</a>");
     print("</div>");

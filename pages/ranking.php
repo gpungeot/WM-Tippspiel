@@ -21,18 +21,21 @@ foreach($users as $user=>$value) {
 		print($i);
 	}
 	print("</td>");
-	if($i > $history[$user][1]) {
-		print("<td class=\"rankDown\">");
-		print("</td>");
-	}
-	else if($i == $history[$user][1]) {
-		print("<td class=\"rankEqual\">");
-		print("</td>");
-	}
-	else if($i < $history[$user][1]) {
-		print("<td class=\"rankUp\">");
-		print("</td>");
-	}
+  if(isset($history[$user][1]))
+  {
+      if($i > $history[$user][1]) {
+    		print("<td class=\"rankDown\">");
+    		print("</td>");
+    	}
+    	else if($i == $history[$user][1]) {
+    		print("<td class=\"rankEqual\">");
+    		print("</td>");
+    	}
+    	else if($i < $history[$user][1]) {
+    		print("<td class=\"rankUp\">");
+    		print("</td>");
+    	}
+  }
 	print("<td class=\"");
 	print(Common::$user->getUserId()==$user?"myname":"name");
 	print("\"><a href=\"".Config::$absolute_url_path."pages/view.php?user=".$user."\">".$value[0]."</a></td><td class=\"bet\">".$value[1]." Points</td>");

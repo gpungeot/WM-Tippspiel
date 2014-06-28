@@ -8,14 +8,15 @@ Common::startPage();
 
 ?>
 
-<h1>Ergebniseingabe</h1>
+<h1>Saisie résultats</h1>
 <form action="select.htm"></form>
 <?php
 
 print("<form action=\"".Config::$absolute_url_path."/backend/controller/matchResultsController.php\" method=\"post\">");
 $now = new DateTime();
+$now->modify("+2 hours");
 print($now->format("Y-m-d H:i:s")."<br>");
-$types = array("A"=>"Gruppe A", "B"=>"Groupe B", "C"=>"Groupe C", "D"=>"Groupe D", "E"=>"Groupe E", "F"=>"Groupe F",
+$types = array("A"=>"Groupe A", "B"=>"Groupe B", "C"=>"Groupe C", "D"=>"Groupe D", "E"=>"Groupe E", "F"=>"Groupe F",
 				"G"=>"Groupe G", "H"=>"Groupe H", "8Fin"=>"1/8 finale", "4Fin"=>"1/4 finale", "2Fin"=>"1/2 finale",
 				"3Fin"=>"3e place", "1Fin"=>"Finale");
 $teams=DbWrapper::getAllTeamsAsHashTable();
@@ -44,6 +45,9 @@ foreach($types as $type=>$typetext)
 			print("<input type=\"hidden\" name=\"".$value->getGameId()."time\" value=\"".$value->getTime()."\">");
 			print("<td class=\"time\">".$time->format("d. M Y")."<br>".$time->format("H:i")."</td>");
 			$time->modify("+1 hours 45 minutes");
+//			echo '<br/>time '.$time->format("d. M Y H:i");
+//			echo ' vs now '.$now->format("d. M Y H:i");
+
 			if($time>$now) {
 				$over = false;
 			}
@@ -53,7 +57,7 @@ foreach($types as $type=>$typetext)
 			$team1 = $value->getFirstTeam();
 			print("<td class=\"team\" style=\"text-align: right;\">");
 			print($team1=="0"?"<i>Pas encore connu</i></td>":$teams[$team1]->getName()."</td>");
-			print("<td> : </td>");
+			print("<td> - </td>");
 			$team2 = $value->getSecondTeam();
 			print("<td class=\"team\">");
 			print($team2=="0"?"<i>Pas encore connu</i></td>":$teams[$team2]->getName()."</td>");
@@ -91,7 +95,7 @@ foreach($types as $type=>$typetext)
 					print(">".$i."</option>");
 				}
 				print("</select>");
-				print(" : ");
+				print(" - ");
 				print("<select name=\"".$value->getGameId()."b\" size=1>");
 				print("<option");
 				print($score==null?" selected":"");
@@ -115,7 +119,7 @@ foreach($types as $type=>$typetext)
 					print(">".$i."</option>");
 				}
 				print("</select>");
-				print(" : ");
+				print(" - ");
 				print("<select name=\"".$value->getGameId()."b2\" size=1>");
 				print("<option");
 				print($endScore==null?" selected":"");
